@@ -14,7 +14,7 @@ package cn.xy.leetcode;
  * 看了其他人的思路后，现在算总块数，然后减取贴合面，贴合面还出现了重复计算的问题
  *
  */
-public class A463IslandPerimeter {
+public class A0463IslandPerimeter {
     public static void main(String[] args) {
 
         int[][] grid ={{1},{0}};
