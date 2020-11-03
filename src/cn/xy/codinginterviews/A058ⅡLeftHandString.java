@@ -32,6 +32,10 @@ public class A058ⅡLeftHandString {
             }
         }
         return String.valueOf(chars1);
+
+
+
+
     }
 
     //孙笑川式写法
