@@ -1,21 +1,20 @@
-package cn.xy.algorithm.Sort;
+package cn.xy.algorithm;
 
 import java.lang.reflect.Method;
 
-public class SortTestHelper {
-    public static void main(String[] args) {
-        for (int i = 0; i < 3; i++) {
-            // int[] array = getRandomArray(1000, 1, 1000);
-            // Arrays.sort(array);
-            //System.out.println(array.length);
-            // for(int n:array){
-            //    System.out.print("____"+n);
-            // }
-            // System.out.println();
-        }
+/**
+ * @author XiangYu
+ * @create2020-11-04-0:50
+ */
+public class Utils {
 
 
+    public static void swap(Object[] array, int i, int j) {
+        Object t = array[i];
+        array[i] = array[j];
+        array[j] = t;
     }
+
 
     /**
      * 生成一个区间为[rangeL,rangeR]，长度为n的int数组
