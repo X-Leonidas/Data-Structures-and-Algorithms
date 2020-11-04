@@ -116,7 +116,6 @@ public class Utils {
             assert isSorted(arr);
 
             System.out.println(sortname + ":" + (endTime - startTime) + "ms");
-
         } catch (Exception e) {
             e.printStackTrace();
         }
