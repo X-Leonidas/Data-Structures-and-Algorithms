@@ -1,4 +1,4 @@
-package cn.xy.leetcode;
+package cn.xy.leetcode.array;
 
 /**
  * @author XiangYu

@@ -10,16 +10,15 @@ public class InsertSort {
     /**
      * 插入排序
      *
-     * @param array
+     * @param arr
      */
-    public static void insertSort(Integer[] array) {
-        for (int i = 1; i < array.length; i++) {
-            for (int j = i; j > 0; j--) {
-                if (array[j] < array[j - 1]) {
-                    Utils.swap(array, j, j - 1);
-                } else {
-                    break;
-                }
+    public static void insertSort(Integer[] arr) {
+        if (arr == null || arr.length < 2) {
+            return;
+        }
+        for (int i = 1; i < arr.length; i++) {
+            for (int j = i - 1; j >= 0 && arr[j] > arr[j + 1]; j--) {
+                Utils.swap(arr, j, j + 1);
             }
         }
     }
