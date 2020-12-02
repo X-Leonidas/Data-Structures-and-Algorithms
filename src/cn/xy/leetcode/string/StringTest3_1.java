@@ -26,8 +26,8 @@ public class StringTest3_1 {
     public static void main(String[] args) {
 
 
-        String[] strings = {"asd","asdc"};
-        System.out.println(longestCommonPrefix2(strings));
+        String[] strings = {"",""};
+        System.out.println(longestCommonPrefix3(strings));
     }
 
 
@@ -106,5 +106,50 @@ public class StringTest3_1 {
             return a;
         }
 
+    }
+
+
+    /**
+     * 力扣官方解法
+     * 跟上面大神的写法相似
+     * 先拿两个字符串的公共前缀，然后用公共前缀在去匹配剩下的前缀，知道公共前缀为0， 或者遍历结束
+     *
+     *
+     * 执行用时：1 ms, 在所有 Java 提交中击败了88.05%的用户
+     * 内存消耗：36.4 MB, 在所有 Java 提交中击败了86.48%的用户
+     * @param strs
+     * @return
+     */
+    public static String longestCommonPrefix3(String[] strs) {
+        if(strs == null || strs.length ==0){
+            return  "";
+        }
+
+        String prefix = strs[0];
+
+        for (int i = 1; i < strs.length; i++) {
+            prefix = longestCommonPrefix(prefix, strs[i]);
+            if(prefix.length() == 0){
+                break;
+            }
+        }
+        return  prefix;
+    }
+
+
+
+    public static String longestCommonPrefix(String str1,String str2){
+        int length = Math.min(str1.length(),str2.length());
+
+        int index = 0;
+
+        for (int i = 0; i < length; i++) {
+            if(str1.charAt(i) == str2.charAt(i)){
+                index++;
+            }else {
+                break;
+            }
+        }
+        return  str1.substring(0,index);
     }
 }
