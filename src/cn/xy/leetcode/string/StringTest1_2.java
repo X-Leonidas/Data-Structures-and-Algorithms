@@ -4,7 +4,8 @@ import java.util.*;
 
 /**
  * @author XiangYu
- * @create2020-11-27-10:23 给出一个区间的集合，请合并所有重叠的区间。
+ * @create2020-11-27-10:23
+ * 给出一个区间的集合，请合并所有重叠的区间。
  * <p>
  * 示例 1:
  * <p>
@@ -23,7 +24,7 @@ import java.util.*;
  * <p>
  * intervals[i][0] <= intervals[i][1]
  */
-public class StringTest2 {
+public class StringTest1_2 {
     public static void main(String[] args) {
 
         int[][] ints = {{1,2},{3,9},{8,12}};

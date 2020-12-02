@@ -29,7 +29,7 @@ package cn.xy.leetcode.string;
  *
  *
  */
-public class StringTest1 {
+public class StringTest1_1 {
     public static void main(String[] args) {
         int[] nums = {1,3};
         int tartget = 2;
