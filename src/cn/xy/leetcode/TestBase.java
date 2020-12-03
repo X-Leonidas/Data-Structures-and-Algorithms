@@ -1,5 +1,7 @@
 package cn.xy.leetcode;
 
+import java.util.Arrays;
+
 /**
  * @author XiangYu
  * @create2020-11-05-17:22
@@ -47,4 +49,26 @@ package cn.xy.leetcode;
  *
  */
 public class TestBase {
+
+    public int countPrimes(int n) {
+        int[] isPrime = new int[n];
+        //将数组全部元素初始化为1
+        Arrays.fill(isPrime, 1);
+        int ans = 0;
+        for (int i = 2; i < n; ++i) {
+            if (isPrime[i] == 1) {
+                ans += 1;
+                if ((long) i * i < n) {
+                    //对于一个质数 x，如果按上文说的我们从 2x 开始标记其实是冗余的，
+                    // 应该直接从 x * x开始标记，因为 2x,3x… 这些数一定在 x 之前就
+                    // 被其他数的倍数标记过了
+                    for (int j = i * i; j < n; j += i) {
+                        isPrime[j] = 0;
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+
 }
