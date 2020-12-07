@@ -1,4 +1,4 @@
-package cn.xy.algorithm;
+package cn.xy.utils;
 
 import java.lang.reflect.Method;
 
@@ -9,6 +9,13 @@ import java.lang.reflect.Method;
 public class Utils {
 
 
+    //TODO:生成随即长度的随机数组
+
+
+
+
+
+    //交换
     public static void swap(Object[] array, int i, int j) {
         Object t = array[i];
         array[i] = array[j];
@@ -61,7 +68,7 @@ public class Utils {
         //先生成一个有序数组
         Integer[] arr = new Integer[n];
         for (int i = 0; i < n; i++) {
-            arr[i] = new Integer(i);
+            arr[i] = i;
         }
         //随机交换
         for (int i = 0; i < swapTimes; i++) {
@@ -85,7 +92,7 @@ public class Utils {
         return true;
     }
 
-    //
+    //复制数组
     public static Integer[] copyArray(Integer[] array) {
         int n = array.length;
         Integer[] array1 = new Integer[n];

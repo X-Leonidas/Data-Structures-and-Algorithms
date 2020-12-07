@@ -1,6 +1,6 @@
 package cn.xy.algorithm.Sort;
 
-import cn.xy.algorithm.Utils;
+import cn.xy.utils.Utils;
 
 /**
  * @author XiangYu
