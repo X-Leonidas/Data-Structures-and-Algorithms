@@ -50,4 +50,42 @@ package cn.xy.leetcode.string;
  *
  */
 public class StringTest4_4 {
+
+    public static void main(String[] args) {
+        int[] nums = {0,1,2,2,3,0,4,2};
+        for (int i = 0; i < nums.length; i++) {
+            System.out.print(nums[i]+"  ");
+        }
+        System.out.println();
+        int i1 = removeElement(nums, 2);
+
+        System.out.println(i1);
+        for (int i = 0; i < nums.length; i++) {
+            System.out.print(nums[i]+"  ");
+        }
+
+    }
+
+    /**
+     * 执行用时：0 ms, 在所有 Java 提交中击败了100.00%的用户
+     * 内存消耗：37.1 MB, 在所有 Java 提交中击败了67.80%的用户
+     * @param nums
+     * @param val
+     * @return
+     */
+    public static int removeElement(int[] nums, int val) {
+
+        //快慢指针
+
+        //慢指针
+        int index1 = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if(nums[i] != val){
+                nums[index1] = nums[i];
+                index1++;
+            }
+        }
+
+        return  index1;
+    }
 }
