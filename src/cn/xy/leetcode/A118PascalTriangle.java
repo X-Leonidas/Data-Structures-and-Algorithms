@@ -7,7 +7,9 @@ import java.util.List;
 /**
  * @author XiangYu
  * @create2020-12-06-17:15
- * 给定一个非负整数 numRows，生成杨辉三角的前 numRows 行。
+ * 1.给定一个非负整数 numRows，生成杨辉三角的前 numRows 行。
+ * 2.给定一个非负索引 k，其中 k ≤ 33，返回杨辉三角的第 k 行。
+ *      进阶：你可以优化你的算法到 O(k) 空间复杂度吗？
  */
 public class A118PascalTriangle {
     public static void main(String[] args) {
@@ -92,5 +94,50 @@ public class A118PascalTriangle {
             lists.add(list);
         }
         return lists;
+    }
+
+
+    /**
+     * 2
+     * @param rowIndex
+     * @return
+     * 执行用时：1 ms, 在所有 Java 提交中击败了78.99%的用户
+     * 内存消耗：36.4 MB, 在所有 Java 提交中击败了40.06%的用户
+     * DP
+     */
+
+    public List<Integer> getRow(int rowIndex) {
+        List<Integer> res = new ArrayList<>(rowIndex+ 1);
+        for (int i = 0; i <= rowIndex; i++) {
+            res.add(1);
+            for (int j = i - 1; j > 0; j--) {
+                res.set(j, res.get(j) + res.get(j - 1));
+            }
+        }
+        return res;
+
+    }
+
+    /**
+     *执行用时：0 ms, 在所有 Java 提交中击败了100.00%的用户
+     * 内存消耗：36 MB, 在所有 Java 提交中击败了89.93%的用户
+     */
+
+    public List<Integer> getRow3(int rowIndex) {
+        List<Integer> ans = new ArrayList<>();
+        int N = rowIndex;
+        long pre = 1;
+        ans.add(1);
+        for (int k = 1; k <= N; k++) {
+            if(k <= (N+1)/2){
+                long cur = pre * (N - k + 1) / k;
+                ans.add((int) cur);
+                pre = cur;
+            }else{
+                ans.add(ans.get(N-k));
+            }
+
+        }
+        return ans;
     }
 }
