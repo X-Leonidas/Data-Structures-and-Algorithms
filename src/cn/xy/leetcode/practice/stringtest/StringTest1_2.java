@@ -1,4 +1,4 @@
-package cn.xy.leetcode.stringtest;
+package cn.xy.leetcode.practice.stringtest;
 
 import java.util.*;
 

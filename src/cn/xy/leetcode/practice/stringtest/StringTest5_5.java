@@ -1,4 +1,4 @@
-package cn.xy.leetcode.stringtest;
+package cn.xy.leetcode.practice.stringtest;
 
 /**
  * @author XiangYu
@@ -52,7 +52,18 @@ package cn.xy.leetcode.stringtest;
  * 内存消耗：40.3 MB, 在所有 Java 提交中击败了68.05%的用户
  */
 public class StringTest5_5 {
-    public int removeDuplicates(int[] nums) {
+
+    public static void main(String[] args) {
+        int[] nums = {0,0,0,1,1,1,2,2,3,3,4};
+        int i = removeDuplicates(nums);
+        System.out.println(i);
+
+        for (int num : nums) {
+            System.out.print(num+"  ");
+        }
+    }
+
+    public static int removeDuplicates(int[] nums) {
         if(nums.length == 0){
             return  0;
         }

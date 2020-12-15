@@ -1,4 +1,4 @@
-package cn.xy.leetcode.stringtest;
+package cn.xy.leetcode.practice.stringtest;
 
 /**
  * @author XiangYu
@@ -59,9 +59,8 @@ public class StringTest5_6 {
         for (int i = 0; i < nums.length; i++) {
             if(nums[i] != 0){
                 if(index != i){
-                    int temp = nums[index];
                     nums[index] = nums[i];
-                    nums[i] = temp;
+                    nums[i] = 0;
                 }
                 index++;
             }
