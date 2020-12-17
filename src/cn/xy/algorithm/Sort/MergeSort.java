@@ -9,9 +9,6 @@ import java.util.Arrays;
  *
  * 时间复杂度 O(N*logN)   空间复杂度 O(N)
  *
- *
- *
- *
  * TODO:逆序对问题
  */
 public class MergeSort {

@@ -1,4 +1,4 @@
-package cn.xy.leetcode.easy.array;
+package cn.xy.leetcode.middle.array;
 
 /**
  * @author XiangYu
@@ -42,6 +42,12 @@ public class A0122BestTimeToBuyAndSellStock2 {
         int [] ints = {7,1,5,3,6,4};
         System.out.println(maxProfit(ints));
     }
+
+    /**
+     * 贪心算法
+     * @param prices  价格
+     * @return
+     */
     public static int maxProfit(int[] prices) {
         int profit =0;
         if(prices.length < 2){

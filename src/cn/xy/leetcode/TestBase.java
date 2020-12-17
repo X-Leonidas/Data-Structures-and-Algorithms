@@ -3,72 +3,135 @@ package cn.xy.leetcode;
 import java.util.Arrays;
 
 /**
- * @author XiangYu
- * @create2020-11-05-17:22
- * LeetCode 设计了一款新式键盘，正在测试其可用性。测试人员将会点击一系列键（总计 n 个），每次一个。
- * 给你一个长度为 n 的字符串 keysPressed ，其中 keysPressed[i] 表示测试序列中第 i 个被按下的键。releaseTimes 是一个升序排列的列表，
- * 其中 releaseTimes[i] 表示松开第 i 个键的时间。字符串和数组的下标都从 0 开始 。第 0 个键在时间为 0 时被按下，接下来每个键都恰好在
- * 前一个键松开时被按下。测试人员想要找出按键 持续时间最长 的键。
- * 第 i 次按键的持续时间为 releaseTimes[i] - releaseTimes[i - 1] ，第 0 次按键的持续时间为 releaseTimes[0] 。
- * 注意，测试期间，同一个键可以在不同时刻被多次按下，而每次的持续时间都可能不同。
- * 请返回按键 持续时间最长 的键，如果有多个这样的键，则返回 按字母顺序排列最大 的那个键。
- *
- *
- * 示例 1：
- *
- * 输入：releaseTimes = [9,29,49,50], keysPressed = "cbcd"
- * 输出："c"
- * 解释：按键顺序和持续时间如下：
- * 按下 'c' ，持续时间 9（时间 0 按下，时间 9 松开）
- * 按下 'b' ，持续时间 29 - 9 = 20（松开上一个键的时间 9 按下，时间 29 松开）
- * 按下 'c' ，持续时间 49 - 29 = 20（松开上一个键的时间 29 按下，时间 49 松开）
- * 按下 'd' ，持续时间 50 - 49 = 1（松开上一个键的时间 49 按下，时间 50 松开）
- * 按键持续时间最长的键是 'b' 和 'c'（第二次按下时），持续时间都是 20
- * 'c' 按字母顺序排列比 'b' 大，所以答案是 'c'
- * 示例 2：
- *
- * 输入：releaseTimes = [12,23,36,46,62], keysPressed = "spuda"
- * 输出："a"
- * 解释：按键顺序和持续时间如下：
- * 按下 's' ，持续时间 12
- * 按下 'p' ，持续时间 23 - 12 = 11
- * 按下 'u' ，持续时间 36 - 23 = 13
- * 按下 'd' ，持续时间 46 - 36 = 10
- * 按下 'a' ，持续时间 62 - 46 = 16
- * 按键持续时间最长的键是 'a' ，持续时间 16
- *  
- *
- * 提示：
- *
- * releaseTimes.length == n
- * keysPressed.length == n
- * 2 <= n <= 1000
- * 1 <= releaseTimes[i] <= 109
- * releaseTimes[i] < releaseTimes[i+1]
- * keysPressed 仅由小写英文字母组成
- *
+ * 代码练习
  */
 public class TestBase {
 
-    public int countPrimes(int n) {
-        int[] isPrime = new int[n];
-        //将数组全部元素初始化为1
-        Arrays.fill(isPrime, 1);
-        int ans = 0;
-        for (int i = 2; i < n; ++i) {
-            if (isPrime[i] == 1) {
-                ans += 1;
-                if ((long) i * i < n) {
-                    //对于一个质数 x，如果按上文说的我们从 2x 开始标记其实是冗余的，
-                    // 应该直接从 x * x开始标记，因为 2x,3x… 这些数一定在 x 之前就
-                    // 被其他数的倍数标记过了
-                    for (int j = i * i; j < n; j += i) {
-                        isPrime[j] = 0;
-                    }
-                }
+
+    public static void mergeSort(int[] arr) {
+        if (arr == null || arr.length < 2) {
+            return;
+        }
+        mergeSort(arr, 0, arr.length - 1);
+    }
+
+    public static void mergeSort(int[] arr, int l, int r) {
+        if (l == r) {
+            return;
+        }
+        int mid = l + ((r - l) >> 1);
+        mergeSort(arr, l, mid);
+        mergeSort(arr, mid + 1, r);
+        merge(arr,l,mid,r);
+    }
+
+
+    public static void merge(int[] arr, int l, int mid, int r) {
+        //创建临时数组
+        int[] temp = new int[r-l + 1];
+
+        int index = 0;
+        int p1 = l;
+        int p2 = mid + 1;
+        while(p1 <= mid && p2 <= r){
+            temp[index++] =  arr[p1] <= arr[p2]?arr[p1++]:arr[p2++];
+        }
+
+        //当某一个数组指针到底末尾
+
+        while (p1 <= mid){
+            temp[index++] = arr[p1++];
+        }
+        while (p2 <= r){
+            temp[index++] = arr[p2++];
+        }
+        for (int i = 0; i < temp.length; i++) {
+            arr[l+i] = temp[i];
+        }
+    }
+
+
+    // for test
+    public static void comparator(int[] arr) {
+        Arrays.sort(arr);
+    }
+
+    // for test
+    public static int[] generateRandomArray(int maxSize, int maxValue) {
+        int[] arr = new int[(int) ((maxSize + 1) * Math.random())];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = (int) ((maxValue + 1) * Math.random()) - (int) (maxValue * Math.random());
+        }
+        return arr;
+    }
+
+    // for test
+    public static int[] copyArray(int[] arr) {
+        if (arr == null) {
+            return null;
+        }
+        int[] res = new int[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            res[i] = arr[i];
+        }
+        return res;
+    }
+
+    // for test
+    public static boolean isEqual(int[] arr1, int[] arr2) {
+        if ((arr1 == null && arr2 != null) || (arr1 != null && arr2 == null)) {
+            return false;
+        }
+        if (arr1 == null && arr2 == null) {
+            return true;
+        }
+        if (arr1.length != arr2.length) {
+            return false;
+        }
+        for (int i = 0; i < arr1.length; i++) {
+            if (arr1[i] != arr2[i]) {
+                return false;
             }
         }
-        return ans;
+        return true;
+    }
+
+    // for test
+    public static void printArray(int[] arr) {
+        if (arr == null) {
+            return;
+        }
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+
+    // for test
+    public static void main(String[] args) {
+        int testTime = 500000;
+        int maxSize = 100;
+        int maxValue = 100;
+        boolean succeed = true;
+        for (int i = 0; i < testTime; i++) {
+            int[] arr1 = generateRandomArray(maxSize, maxValue);
+            int[] arr2 = copyArray(arr1);
+            mergeSort(arr1);
+            comparator(arr2);
+            if (!isEqual(arr1, arr2)) {
+                succeed = false;
+                printArray(arr1);
+                printArray(arr2);
+                break;
+            }
+        }
+        System.out.println(succeed ? "Nice!" : "Fucking fucked!");
+
+        int[] arr = generateRandomArray(maxSize, maxValue);
+        printArray(arr);
+        mergeSort(arr);
+        printArray(arr);
+
     }
 
 }
