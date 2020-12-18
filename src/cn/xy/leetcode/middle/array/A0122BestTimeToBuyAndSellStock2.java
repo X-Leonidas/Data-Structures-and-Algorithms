@@ -64,4 +64,63 @@ public class A0122BestTimeToBuyAndSellStock2 {
         return profit;
     }
 
+    /**
+     * 只能买卖一次
+     * @param prices
+     * @return
+     */
+    public static int maxProfit_1(int[] prices) {
+        if(prices.length < 2){
+            return 0;
+        }
+        int profit =0;
+        int min = prices[0];
+        int max = 0;
+
+        for (int i = 1; i < prices.length; i++) {
+            if(prices[i] < min){
+                //获取最小值时，要重置最大值并获取上一次的利润
+                profit = Math.max(max-min,profit);
+                min = prices[i];
+                max = prices[i];
+
+            }
+            if(prices[i] > max){
+                max = prices[i];
+            }
+        }
+        //最后一次最小值的计算
+        profit = Math.max(max-min,profit);
+        return profit;
+    }
+
+
+    /**
+     * 只能买卖一次，改进版
+     * 执行用时：1 ms, 在所有 Java 提交中击败了98.55%的用户
+     * 内存消耗：38 MB, 在所有 Java 提交中击败了93.40%
+     * 的用户
+     * @param prices
+     * @return
+     */
+    public int maxProfit_2(int prices[]) {
+        if (prices == null || prices.length < 2) {
+            return 0;
+        }
+        int mp = 0; // 最高收益
+        int min = prices[0]; // 最低价
+        for (int i = 1; i < prices.length; i++) {
+            if (prices[i] < min) {
+                // 设定相对最低价
+                min = prices[i];
+            } else if (mp < (prices[i] - min)) {
+                // 设定最高盈利
+                mp = prices[i] - min;
+            }
+        }
+        return mp;
+    }
+
+
+
 }
