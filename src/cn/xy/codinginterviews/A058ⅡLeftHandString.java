@@ -59,8 +59,6 @@ public class A058ⅡLeftHandString {
         for(int i = n; i < n + s.length(); i++){
             res.append(s.charAt(i % s.length()));
         }
-
         return res.toString();
-
     }
 }

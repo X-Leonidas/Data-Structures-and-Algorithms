@@ -7,6 +7,13 @@ package cn.xy.algorithm.dp;
  * 1. 建立状态转移方程
  * 2. 缓存并复用以往结果
  * 3. 按顺序从小往大算
+ *
+ *
+ *
+ *
+ *
+ *
+ *
  */
 public class DP {
 

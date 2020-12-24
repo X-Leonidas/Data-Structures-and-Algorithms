@@ -1,6 +1,7 @@
 package cn.xy.utils;
 
 import java.lang.reflect.Method;
+import java.util.Random;
 
 /**
  * @author XiangYu
@@ -9,10 +10,23 @@ import java.lang.reflect.Method;
 public class Utils {
 
 
-    //TODO:生成随即长度的随机数组
-
-
-
+    /**
+     * 生成随机长度，随机大小的数组数组
+     *
+     * @param arrayRangeL 数组的最小长度
+     * @param arrayRangeR 数组的最大长度
+     * @param rangeL      数值的最小值
+     * @param rangeR      数值的最大值
+     * @return 数组
+     */
+    public static Integer[] getRandomSizeArray(int arrayRangeL, int arrayRangeR, int rangeL, int rangeR) {
+        int arraySize = (int) ((arrayRangeR - arrayRangeL + 1) * Math.random() + arrayRangeL);
+        Integer[] array = new Integer[arraySize];
+        for (int i = 0; i < arraySize; i++) {
+            array[i] = (int) ((rangeR - rangeL + 1) * Math.random() + rangeL);
+        }
+        return  array;
+    }
 
 
     //交换

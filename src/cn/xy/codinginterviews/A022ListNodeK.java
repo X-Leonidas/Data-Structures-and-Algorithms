@@ -68,8 +68,3 @@ public class A022ListNodeK {
     }
 }
 
-class ListNode {
-      int val;
-      ListNode next;
-      ListNode(int x) { val = x; }
-}
