@@ -1,5 +1,7 @@
 package cn.xy.codinginterviews;
 
+import java.util.ArrayList;
+
 public class ListNode {
       int val;
       ListNode next;
@@ -7,17 +9,17 @@ public class ListNode {
 
 
 
-      public static ListNode getDemo(){
-            ListNode node1 = new ListNode(1);
-            ListNode node2 = new ListNode(2);
-            ListNode node3 = new ListNode(3);
-            ListNode node4 = new ListNode(4);
-            ListNode node5 = new ListNode(5);
-            node1.next = node2;
-            node2.next = node3;
-            node3.next = node4;
-            node4.next = node5;
+      public static ListNode getDemo(int[] array){
+            ArrayList<ListNode> listNodes = new ArrayList<>();
+            for (int i = 0; i < array.length; i++) {
+                  listNodes.add(new ListNode(array[i]));
+            }
 
-            return  node1;
+
+            for (int i = 0; i < listNodes.size() -1; i++) {
+                  listNodes.get(i).next = listNodes.get(i+1);
+            }
+
+            return  listNodes.get(0);
       }
 }

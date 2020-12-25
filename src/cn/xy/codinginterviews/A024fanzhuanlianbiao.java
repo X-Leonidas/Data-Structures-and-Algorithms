@@ -4,31 +4,27 @@ import java.util.Stack;
 
 /**
  * @author XiangYu
- * @create2020-12-24-16:00
- * 定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。
- *
+ * @create2020-12-24-16:00 定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。
+ * <p>
  *  
- *
+ * <p>
  * 示例:
- *
+ * <p>
  * 输入: 1->2->3->4->5->NULL
  * 输出: 5->4->3->2->1->NULL
- *
  */
 public class A024fanzhuanlianbiao {
 
-    public static  ListNode reverseList(ListNode head) {
+    public static ListNode reverseList(ListNode head) {
 
-        if(head == null){
-            return  null;
+        if (head == null) {
+            return null;
         }
-
-
         Stack<ListNode> stack = new Stack<>();
 
-        ListNode temp =head;
+        ListNode temp = head;
 
-        while(temp != null){
+        while (temp != null) {
             stack.push(temp);
             temp = temp.next;
         }
@@ -42,7 +38,7 @@ public class A024fanzhuanlianbiao {
             temp.next = null;
         }
         temp.next = null;
-        return  head;
+        return head;
     }
 
 
@@ -50,55 +46,53 @@ public class A024fanzhuanlianbiao {
      * 双指针
      * 执行用时：0 ms, 在所有 Java 提交中击败了100.00%的用户
      * 内存消耗：38.2 MB, 在所有 Java 提交中击败了67.49%的用户
+     *
      * @param head
      * @return
      */
     public ListNode reverseList2(ListNode head) {
-        ListNode pre  = null;
-        ListNode now  = head;
-
-
-        while (now != null){
+        ListNode pre = null;
+        ListNode now = head;
+        while (now != null) {
             ListNode temp = now.next;
             now.next = pre;
             pre = now;
             now = temp;
         }
-
-
         return pre;
     }
 
 
-    public static void main(String[] args) {
-        ListNode demo = ListNode.getDemo();
-        reverseList3(demo);
-    }
-
     /**
      * 递归
+     *
      * @param head
      * @return
      */
     public static ListNode reverseList3(ListNode head) {
-        ListNode temp = null;
-        ListNode reverse = reverse(temp,head);
-        return reverse;
+       return  reverse(head,null);
+    }
+
+
+    public static ListNode reverse(ListNode now,ListNode pre) {
+
+        if (now == null) {
+            return pre;
+        } else {
+            //拿到上一步返回的链表
+            ListNode temp = reverse(now.next, now);
+            //反转链表
+            now.next =  pre;
+            return  temp;
+        }
+
 
     }
 
 
-    public static  ListNode reverse(ListNode temp ,ListNode node){
 
-        if(node.next == null){
-            return node;
-        }else {
-            temp = reverse(temp,node.next);
-            node.next = null;
-            temp.next = node;
-        }
+    public static void main(String[] args) {
 
-        return  temp;
     }
 
 }
