@@ -37,6 +37,13 @@ public class Utils {
     }
 
 
+    //交换
+    public static void swap(int[] array, int i, int j) {
+        int t = array[i];
+        array[i] = array[j];
+        array[j] = t;
+    }
+
     /**
      * 生成一个区间为[rangeL,rangeR]，长度为n的int数组
      *
@@ -98,7 +105,7 @@ public class Utils {
 
     //判断数组是否有序
     public static boolean isSorted(Comparable[] arr) {
-        for (int i = 0; i < arr.length; i++) {
+        for (int i = 0; i < arr.length -1; i++) {
             if (arr[i].compareTo(arr[i + 1]) > 0) {
                 return false;
             }

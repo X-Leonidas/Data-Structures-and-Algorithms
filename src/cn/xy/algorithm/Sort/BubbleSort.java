@@ -1,6 +1,7 @@
 package cn.xy.algorithm.Sort;
 
 import cn.xy.utils.Utils;
+import com.sun.net.httpserver.Authenticator;
 
 /**
  * @author XiangYu
@@ -8,6 +9,23 @@ import cn.xy.utils.Utils;
  * 冒泡排序
  */
 public class BubbleSort {
+
+
+    public static void main(String[] args) {
+        Integer[] randomArray = Utils.getRandomArray(50, 1, 200);
+        bubbleSortTest(randomArray);
+
+        Utils.printArray(randomArray);
+        boolean sorted = Utils.isSorted(randomArray);
+        if(sorted){
+            System.out.println("Success");
+        }else{
+            System.out.println("fuck");
+        }
+    }
+
+
+
     /**
      * 冒泡排序
      *
@@ -23,6 +41,11 @@ public class BubbleSort {
         }
     }
 
+
+
+
+
+
     /**
      * 冒泡排序改进,加入一个flag标志
      *
@@ -37,13 +60,32 @@ public class BubbleSort {
                     flag = true;
                 }
             }
-            if (flag == false) {
+            if (!flag) {
                 break;
-            } else {
-                flag = false;
             }
         }
     }
+
+
+    public static void bubbleSortTest(Integer[] array){
+        boolean flag = false;
+
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length - i - 1; j++) {
+                if(array[j] > array[j+1]){
+                    Utils.swap(array,j,j+1);
+                    flag = true;
+                }
+            }
+
+
+            if(!flag){
+                break;
+            }
+        }
+        
+    }
+
 
     /**
      * 冒泡排序
