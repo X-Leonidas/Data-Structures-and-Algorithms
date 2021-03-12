@@ -1,10 +1,16 @@
-package cn.xy.algorithm.Sort;
+package cn.xy.algorithm.sort;
 
 import cn.xy.utils.Utils;
 
 /**
  * @author XiangYu
  * @create2020-11-04-0:52
+ *
+ *
+ * 插入排序
+ *
+ * 时间复杂度：  O（N^2）
+ *
  */
 public class InsertSort {
     /**

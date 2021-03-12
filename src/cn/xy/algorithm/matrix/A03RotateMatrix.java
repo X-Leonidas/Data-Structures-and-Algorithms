@@ -1,4 +1,4 @@
-package cn.xy.leetcode.practice.stringtest;
+package cn.xy.algorithm.matrix;
 
 /**
  * @author XiangYu
@@ -40,7 +40,7 @@ package cn.xy.leetcode.practice.stringtest;
  * [16, 7,10,11]
  * ]
  */
-public class StringTest2_1 {
+public class A03RotateMatrix {
     public static void main(String[] args) {
         int[][] matrix = {
                 {1, 2, 3},
@@ -164,13 +164,15 @@ public class StringTest2_1 {
 
 
     /**
-     * 左神的写法
+     *  左神的写法
      *
      */
     public static void rotate4(int[][] matrix) {
         int tR = 0;
         int tC = 0;
+        //宽度
         int dR = matrix.length - 1;
+        //高度
         int dC = matrix[0].length - 1;
         while (tR < dR) {
             rotateEdge(matrix, tR++, tC++, dR--, dC--);

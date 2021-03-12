@@ -73,7 +73,7 @@ public class TreeNode {
     }
 
     /**
-     * 先序遍历
+     * 先序遍历二叉树
      *
      * @param rootTreeNode
      */
@@ -98,6 +98,16 @@ public class TreeNode {
             inTraverseBTree(rootTreeNode.getRightTreeNode());
         }
     }
+
+    /**
+     *  后续遍历二叉树
+     */
+    public static void endTraverseBTree(TreeNode rootTreeNode){
+
+    }
+
+
+
 
     /**
      * 动态的创建二叉树
