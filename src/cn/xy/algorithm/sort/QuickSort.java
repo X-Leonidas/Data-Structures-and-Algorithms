@@ -25,6 +25,12 @@ public class QuickSort {
         quickSort(arr, 0, arr.length - 1);
     }
 
+    /**
+     *
+     * @param arr
+     * @param l
+     * @param r
+     */
     public static void quickSort(int[] arr, int l, int r) {
         if (l < r) {
             //随机快排
