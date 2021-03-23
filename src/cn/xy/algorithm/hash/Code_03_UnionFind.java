@@ -8,7 +8,7 @@ import java.util.Stack;
 /**
  * 并查集结构
  */
-public class Code_04_UnionFind {
+public class Code_03_UnionFind {
 
     public static class Node {
         // whatever you like

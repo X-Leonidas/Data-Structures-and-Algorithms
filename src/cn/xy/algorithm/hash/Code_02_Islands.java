@@ -25,7 +25,7 @@ package cn.xy.algorithm.hash;
  *
  *
  */
-public class Code_03_Islands {
+public class Code_02_Islands {
 
 	public static int countIslands(int[][] m) {
 		if (m == null || m[0] == null) {

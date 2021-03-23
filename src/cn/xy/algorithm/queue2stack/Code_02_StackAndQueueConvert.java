@@ -12,7 +12,7 @@ import java.util.Stack;
  * 队列模拟栈
  *
  */
-public class Code_03_StackAndQueueConvert {
+public class Code_02_StackAndQueueConvert {
     public static class TwoStacksQueue {
         private Stack<Integer> stackPush;
         private Stack<Integer> stackPop ;
