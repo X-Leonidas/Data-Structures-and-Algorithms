@@ -10,7 +10,7 @@ package cn.xy.algorithm.BinaryTree;
  *
  *  字母应该放在边上，而不是节点上，放到节点上会增加实现难度
  */
-public class Code_09_TrieTree {
+public class Code_07_TrieTree {
 
 
     public static class TrieNode {

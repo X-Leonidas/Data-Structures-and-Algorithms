@@ -54,12 +54,15 @@ public class Code_02_MaxRecSize {
         if (height == null || height.length == 0) {
             return 0;
         }
+
         int maxArea = 0;
-        // 单调栈
+
+        // 单调栈  从小到大的单调栈
         Stack<Integer> stack = new Stack<Integer>();
         for (int i = 0; i < height.length; i++) {
             while (!stack.isEmpty() && height[i] <= height[stack.peek()]) {
                 int j = stack.pop();
+                //左边界
                 int k = stack.isEmpty() ? -1 : stack.peek();
                 // =((i-1)-(k+1)+1)*height[j]，即，j 向右至少能扩展到 i-1，向左能精确扩展到 k+1，计算 (右边界-左边界+1)*高
                 int curArea = (i - k - 1) * height[j];

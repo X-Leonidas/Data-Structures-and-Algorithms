@@ -18,7 +18,7 @@ package cn.xy.algorithm.BinaryTree;
  *
  *
  */
-public class Code_08_CompleteTreeNodeNumber {
+public class Code_06_CompleteTreeNodeNumber {
 
     public static class Node {
         public int value;
