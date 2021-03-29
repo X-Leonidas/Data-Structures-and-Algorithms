@@ -1,36 +1,36 @@
 package cn.xy.algorithm.BinaryTree;
 
 public class TreeNode {
-    private TreeNode leftTreeNode;
-    private TreeNode rightTreeNode;
-    private int value;
+    public TreeNode left;
+    public TreeNode right;
+    public int val;
 
     public TreeNode(int value) {
-        this.value = value;
+        this.val = value;
     }
 
-    public int getValue() {
-        return value;
+    public int getVal() {
+        return val;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setVal(int val) {
+        this.val = val;
     }
 
-    public TreeNode getLeftTreeNode() {
-        return leftTreeNode;
+    public TreeNode getLeft() {
+        return left;
     }
 
-    public TreeNode getRightTreeNode() {
-        return rightTreeNode;
+    public TreeNode getRight() {
+        return right;
     }
 
-    public void setLeftTreeNode(TreeNode leftTreeNode) {
-        this.leftTreeNode = leftTreeNode;
+    public void setLeft(TreeNode left) {
+        this.left = left;
     }
 
-    public void setRightTreeNode(TreeNode rightTreeNode) {
-        this.rightTreeNode = rightTreeNode;
+    public void setRight(TreeNode right) {
+        this.right = right;
     }
 
     public static void main(String[] args) {
@@ -50,12 +50,12 @@ public class TreeNode {
         TreeNode treeNode5 = new TreeNode(35);
 
         //根节点的左右孩子
-        treeNode1.setLeftTreeNode(treeNode2);
-        treeNode1.setRightTreeNode(treeNode3);
+        treeNode1.setLeft(treeNode2);
+        treeNode1.setRight(treeNode3);
 
         //20节点的左右孩子
-        treeNode3.setLeftTreeNode(treeNode4);
-        treeNode3.setRightTreeNode(treeNode5);
+        treeNode3.setLeft(treeNode4);
+        treeNode3.setRight(treeNode5);
 
 
         int[] arrays = {2, 3, 1, 4, 5};
@@ -79,9 +79,9 @@ public class TreeNode {
      */
     public static void preTraverseBTree(TreeNode rootTreeNode) {
         if (rootTreeNode != null) {
-            System.out.println(rootTreeNode.getValue());
-            preTraverseBTree(rootTreeNode.getLeftTreeNode());
-            preTraverseBTree(rootTreeNode.getRightTreeNode());
+            System.out.println(rootTreeNode.getVal());
+            preTraverseBTree(rootTreeNode.getLeft());
+            preTraverseBTree(rootTreeNode.getRight());
 
         }
     }
@@ -93,9 +93,9 @@ public class TreeNode {
      */
     public static void inTraverseBTree(TreeNode rootTreeNode) {
         if (rootTreeNode != null) {
-            inTraverseBTree(rootTreeNode.getLeftTreeNode());
-            System.out.println(rootTreeNode.getValue());
-            inTraverseBTree(rootTreeNode.getRightTreeNode());
+            inTraverseBTree(rootTreeNode.getLeft());
+            System.out.println(rootTreeNode.getVal());
+            inTraverseBTree(rootTreeNode.getRight());
         }
     }
 
@@ -119,19 +119,19 @@ public class TreeNode {
         } else {
             TreeNode tempRoot = treeRoot.getTreeRoot();
             while (tempRoot != null) {
-                if (value > tempRoot.getValue()) {
-                    if (tempRoot.getRightTreeNode() == null) {
-                        tempRoot.setRightTreeNode(new TreeNode(value));
+                if (value > tempRoot.getVal()) {
+                    if (tempRoot.getRight() == null) {
+                        tempRoot.setRight(new TreeNode(value));
                         return;
                     } else {
-                        tempRoot = tempRoot.getRightTreeNode();
+                        tempRoot = tempRoot.getRight();
                     }
                 } else {
-                    if (tempRoot.getLeftTreeNode() == null) {
-                        tempRoot.setLeftTreeNode(new TreeNode(value));
+                    if (tempRoot.getLeft() == null) {
+                        tempRoot.setLeft(new TreeNode(value));
                         return;
                     } else {
-                        tempRoot = tempRoot.getLeftTreeNode();
+                        tempRoot = tempRoot.getLeft();
                     }
                 }
             }
@@ -146,8 +146,8 @@ public class TreeNode {
         if (treeNode == null) {
             return 0;
         } else {
-            int left = getHeight(treeNode.getLeftTreeNode());
-            int right = getHeight(treeNode.getRightTreeNode());
+            int left = getHeight(treeNode.getLeft());
+            int right = getHeight(treeNode.getRight());
 
 
             int max = right;
@@ -167,10 +167,10 @@ public class TreeNode {
         if (rootTreeNode == null) {
             return -1;
         } else {
-            int right = getMax(rootTreeNode.getRightTreeNode());
-            int left = getMax(rootTreeNode.getLeftTreeNode());
+            int right = getMax(rootTreeNode.getRight());
+            int left = getMax(rootTreeNode.getLeft());
 
-            int currentRootValue = rootTreeNode.getValue();
+            int currentRootValue = rootTreeNode.getVal();
             int max = right;
             if (left > left) {
                 max = left;
