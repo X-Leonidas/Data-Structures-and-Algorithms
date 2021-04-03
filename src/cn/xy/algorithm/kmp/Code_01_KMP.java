@@ -6,6 +6,10 @@ package cn.xy.algorithm.kmp;
  *
  *
  * KMP算法
+ *
+ *  主要解决包含的问题。例如：str1的子串集合中是否包含str2
+ *
+ *  **时间复杂度 O(n)**
  */
 public class Code_01_KMP {
 
@@ -75,7 +79,7 @@ public class Code_01_KMP {
 
     public static void main(String[] args) {
         String str = "abcabcababaccc";
-        String match = "ababa";
+        String match = "abc";
         System.out.println(getIndexOf(str,match));
     }
 

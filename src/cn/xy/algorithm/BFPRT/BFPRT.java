@@ -3,6 +3,11 @@ package cn.xy.algorithm.BFPRT;
 /**
  * @author XiangYu
  * @create2021-03-21-22:09
+ *
+ *
+ * ### BFPRT算法(TOP-K)
+ *
+ * + 用来求元素中第k大（或小）的值或是前k大（或小）的值     时间复杂度**O(N)**
  */
 public class BFPRT {
     // O(N*logK)

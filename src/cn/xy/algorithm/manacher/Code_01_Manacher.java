@@ -3,7 +3,7 @@ package cn.xy.algorithm.manacher;
 /**
  * @author XiangYu
  * @create2021-03-21-18:45
- *
+ *  可以在时间**O(N)**的情况下求解一个字符串的最长回文子串长度的问题。
  *
  */
 public class Code_01_Manacher {
