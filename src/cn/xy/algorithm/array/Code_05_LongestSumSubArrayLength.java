@@ -11,18 +11,25 @@ import java.util.HashMap;
  *
  *
  *  思路：
- *      记录当前索引能达到的最大累加和Sum，如果在map中不存在则加入。
- *      用sum-aim得出该值在map中是否出现过，如果出现过，则说明从当前位置到出现过的位置为能得到k的长度
+ *      记录当前索引能达到的最大累加和Sum
+ *      用(sum-k)在map中校验是否出现过，
+ *          如果出现过，则说明从出现过的位置到当前位置能得到k的长度
+ *          如果没出现过，则加入到map中
  */
 public class Code_05_LongestSumSubArrayLength {
-
+    /**
+     *
+     * @param arr
+     * @param k  目标值
+     * @return
+     */
     public static int maxLength(int[] arr, int k) {
         if (arr == null || arr.length == 0) {
             return 0;
         }
 
         HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-        // important，塞入0,-1是为了确认在0是在-1上最早出现的，区别sum-aim也有可能得到0的情况。
+        //塞入0,-1是为了确认在0是在-1上最早出现的，区别sum-aim也有可能得到0的情况。
         map.put(0, -1);
         int len = 0;
         int sum = 0;

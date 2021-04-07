@@ -1,6 +1,6 @@
 package cn.xy.algorithm.BinaryTree;
 
-import java.nio.channels.FileChannel;
+import java.util.HashMap;
 
 /**
  * @author XiangYu
@@ -24,6 +24,7 @@ public class Code_10_Max_EOR {
      * @return
      */
     public static  int getMax(int[] arr){
+      
         int max = Integer.MIN_VALUE;
         int[] dp  = new int[arr.length];
         int eor = 0;
@@ -85,7 +86,7 @@ public class Code_10_Max_EOR {
                 int best = move == 31 ? path : (path ^ 1);
                 //实际值   有期望路径则走期望路径，否则就走有的路
                 best = cur.nexts[best] != null ? best : (best ^ 1);
-                 
+
                 res |= (path ^ best) << move;
                 cur = cur.nexts[best];
             }

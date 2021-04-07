@@ -1,7 +1,5 @@
 package cn.xy.algorithm.dp;
 
-import java.util.Stack;
-
 /**
  * @author XiangYu
  * @create2021-03-12-21:48
@@ -11,7 +9,7 @@ import java.util.Stack;
  *
  *
  */
-public class Code_01_Hanoi {
+public class Code_08_Hanoi {
 
     public static void hanoi(int n) {
 
