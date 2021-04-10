@@ -1,5 +1,7 @@
 package cn.xy.codinginterviews;
 
+import cn.xy.utils.ListNode;
+
 /**
  * @author XiangYu
  * @create2020-12-22-14:49

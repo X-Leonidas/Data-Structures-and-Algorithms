@@ -1,5 +1,7 @@
 package cn.xy.codinginterviews;
 
+import cn.xy.utils.ListNode;
+
 import java.util.Stack;
 
 /**

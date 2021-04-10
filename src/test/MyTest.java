@@ -1,5 +1,3 @@
-import cn.xy.codinginterviews.ListNode;
-
 /**
  * @author XiangYu
  * @create2021-03-20-20:46

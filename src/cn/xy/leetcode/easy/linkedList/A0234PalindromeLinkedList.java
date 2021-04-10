@@ -1,6 +1,6 @@
 package cn.xy.leetcode.easy.linkedList;
 
-import cn.xy.codinginterviews.ListNode;
+import cn.xy.utils.ListNode;
 
 /**
  * @author XiangYu
