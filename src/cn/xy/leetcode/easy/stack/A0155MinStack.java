@@ -80,15 +80,18 @@ public class A0155MinStack {
     }
 
 
-    public static void main(String[] args) {
-        A0155MinStack minStack = new A0155MinStack();
-        minStack.push(-2);
-        minStack.push(0);
-        minStack.push(-3);
-        minStack.getMin();
-        minStack.pop();
-        minStack.top();
-        minStack.getMin();
+    public static void main(String[] args) throws InterruptedException {
+        while(true){
+            Thread.sleep(5000);
+            A0155MinStack minStack = new A0155MinStack();
+            minStack.push(-2);
+            minStack.push(0);
+            minStack.push(-3);
+            minStack.getMin();
+            minStack.pop();
+            minStack.top();
+            minStack.getMin();
 
+        }
     }
 }

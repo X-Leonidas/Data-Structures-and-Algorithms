@@ -1,5 +1,7 @@
 package cn.xy.leetcode.easy.tree;
 
+import cn.xy.utils.TreeNode;
+
 /**
  * @author XiangYu
  * @create2021-04-03-12:21 翻转一棵二叉树。
@@ -45,7 +47,6 @@ public class A0226InvertBinaryTree {
         if (root == null) {
             return null;
         }
-
         TreeNode l = invertTree2(root.left);
         TreeNode r = invertTree2(root.right);
 

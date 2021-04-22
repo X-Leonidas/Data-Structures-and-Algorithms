@@ -12,7 +12,7 @@ import cn.xy.utils.Utils;
  * 时间复杂度：  O（N^2）
  *
  */
-public class InsertSort {
+public class A3_InsertSort {
     /**
      * 插入排序
      *

@@ -1,5 +1,7 @@
 package cn.xy.algorithm.BinaryTree;
 
+import cn.xy.utils.TreeNode;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;

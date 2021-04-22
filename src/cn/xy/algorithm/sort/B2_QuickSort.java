@@ -4,87 +4,83 @@ import java.util.Arrays;
 
 /**
  * @author XiangYu
- * @create2021-02-27-22:41 堆排序
- * <p>
- * 时间复杂度  O(N * logN)  空间复杂度 O(1)
+ * @create2021-02-27-21:45
  *
  *
- * 堆  优先级队列
- * <p>
- * <p>
- * 完全二叉树的父节点函数为      (n-1)/2    节点高度为Log N
- * 左子节点：  2n+1
- * 右子节点：  2n+2
- * <p>
- * <p>
- * <p>
- * 堆就是一个完全二叉树
- * 大根堆：在完全二叉树中任何一个子树的最大值都是这个子树的头部
- * 小根堆：在完全二叉树中任何一个子树的最小值都是这个子树的头部
  *
  *
- * 建立一个大根堆的时间复杂度为  O(N)
  *
- *      大根堆收集较小的  2/N个
- *      小根堆收集较大的  2/N个
+ * 基础  ：  荷兰国旗问题
+ *  经典快排的问题：当数据出现例如 1，2，3，4，5，6，7的情况时，因为每次都只能排序一个元素
+ *  复杂度会上升到 O(N^2)
  *
- *   堆排序中：
- *      将大根堆中的最大值与该树末尾（数组末尾）交换，获得当前的最大值
+ *  优化版：使用随机快排  O(N  * logN)
  *
+ *    思路：随机选择一个数M,小于M的放在左边，大于M的放在右边，等于M的放在中间
+ *              1 具体过程，先随机选择一个数N，与数组末尾的数进行交换
+ *              2 设计一个小于等于区间，从左到右依次遍历数组，index小于等于N，则将小于等于区间的下一个数
+ *                 与index交换并且小于等于区间向右扩张一位，直到遍历完除N外的所有数
+ *              3 将N与小于等于区间的下一位进行交换
+ *              4 这就是一次完整的partition的过程
+ *         接下来对左右两个部分递归调用上面的排序过程
  *
+ * 快速排序
  */
-public class HeapSort {
-    public static void heapSort(int[] arr) {
+public class B2_QuickSort {
+    /**
+     * 快排
+     */
+    public static void quickSort(int[] arr) {
         if (arr == null || arr.length < 2) {
             return;
         }
-
-        for (int i = 0; i < arr.length; i++) {
-            //从0-i 生成大根堆
-            heapInsert(arr, i);
-        }
-
-        int size = arr.length;
-        //最后一个数和头节点交换  大根堆size-1
-        swap(arr, 0, --size);
-        while (size > 0) {
-            heapify(arr, 0, size);
-            swap(arr, 0, --size);
-        }
+        quickSort(arr, 0, arr.length - 1);
     }
 
-
     /**
-     * 将一个数组变成大根堆
+     *
      * @param arr
-     * @param index
+     * @param l
+     * @param r
      */
+    public static void quickSort(int[] arr, int l, int r) {
+        if (l < r) {
+            //随机快排
+            swap(arr, l + (int) (Math.random() * (r - l + 1)), r);
+            int[] p = partition(arr, l, r);
 
-    public static void heapInsert(int[] arr, int index) {
-        while (arr[index] > arr[(index - 1) / 2]) {
-            swap(arr, index, (index - 1) / 2);
-            index = (index - 1) / 2;
+
+            //从等于num的数组下标左侧开始
+            quickSort(arr, l, p[0] - 1);
+
+            //从等于num的数组下标右侧开始
+            quickSort(arr, p[1] + 1, r);
         }
     }
 
     /**
-     * 大根堆中某一个数变小后，重新调整为大根堆的操作
+     * 分组过程，将最后一个作为num，小于num的在数组左边，等于num的在中间，大于num的在右边
      * @param arr
-     * @param index
-     * @param size   大根堆的大小
+     * @param l
+     * @param r
+     * @return
      */
-    public static void heapify(int[] arr, int index, int size) {
-        int left = index * 2 + 1;
-        while (left < size) {
-            int largest = left + 1 < size && arr[left + 1] > arr[left] ? left + 1 : left;
-            largest = arr[largest] > arr[index] ? largest : index;
-            if (largest == index) {
-                break;
+    public static int[] partition(int[] arr, int l, int r) {
+        int less = l - 1;
+        int more = r;
+        while (l < more) {
+            if (arr[l] < arr[r]) {
+                swap(arr, ++less, l++);
+            } else if (arr[l] > arr[r]) {
+                swap(arr, --more, l);
+            } else {
+                l++;
             }
-            swap(arr, largest, index);
-            index = largest;
-            left = index * 2 + 1;
         }
+        //将末尾的num移动到中间
+        swap(arr, more, r);
+        //返回等于num的数组下标
+        return new int[] { less + 1, more };
     }
 
     public static void swap(int[] arr, int i, int j) {
@@ -158,10 +154,12 @@ public class HeapSort {
         for (int i = 0; i < testTime; i++) {
             int[] arr1 = generateRandomArray(maxSize, maxValue);
             int[] arr2 = copyArray(arr1);
-            heapSort(arr1);
+            quickSort(arr1);
             comparator(arr2);
             if (!isEqual(arr1, arr2)) {
                 succeed = false;
+                printArray(arr1);
+                printArray(arr2);
                 break;
             }
         }
@@ -169,7 +167,9 @@ public class HeapSort {
 
         int[] arr = generateRandomArray(maxSize, maxValue);
         printArray(arr);
-        heapSort(arr);
+        quickSort(arr);
         printArray(arr);
+
     }
+
 }

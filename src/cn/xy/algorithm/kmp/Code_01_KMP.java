@@ -10,6 +10,8 @@ package cn.xy.algorithm.kmp;
  *  主要解决包含的问题。例如：str1的子串集合中是否包含str2
  *
  *  **时间复杂度 O(n)**
+ *
+ *  思路：
  */
 public class Code_01_KMP {
 

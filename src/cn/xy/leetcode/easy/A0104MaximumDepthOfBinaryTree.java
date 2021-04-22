@@ -1,5 +1,7 @@
 package cn.xy.leetcode.easy;
 
+import cn.xy.utils.TreeNode;
+
 /**
  * @author XiangYu
  * @create2021-04-02-16:25 给定一个二叉树，找出其最大深度。
@@ -20,29 +22,6 @@ package cn.xy.leetcode.easy;
  * <p>
  */
 public class A0104MaximumDepthOfBinaryTree {
-
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
-
-
 
 
     public int maxDepth(TreeNode root) {

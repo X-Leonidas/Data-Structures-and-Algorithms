@@ -1,6 +1,6 @@
 package cn.xy.algorithm.BinaryTree.traverse;
 
-import cn.xy.algorithm.BinaryTree.TreeNode;
+import cn.xy.utils.TreeNode;
 
 import java.util.ArrayDeque;
 

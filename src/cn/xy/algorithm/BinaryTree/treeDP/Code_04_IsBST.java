@@ -1,6 +1,6 @@
 package cn.xy.algorithm.BinaryTree.treeDP;
 
-import cn.xy.algorithm.BinaryTree.TreeNode;
+import cn.xy.utils.TreeNode;
 
 /**
  * @author XiangYu

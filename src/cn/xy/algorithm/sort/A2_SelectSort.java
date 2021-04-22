@@ -6,7 +6,7 @@ import cn.xy.utils.Utils;
  * @author XiangYu
  * @create2020-11-04-0:52
  */
-public class SelectSort {
+public class A2_SelectSort {
     /**
      * 选择排序
      *

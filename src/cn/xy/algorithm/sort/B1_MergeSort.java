@@ -9,9 +9,12 @@ import java.util.Arrays;
  *
  * 时间复杂度 O(N*logN)   空间复杂度 O(N)
  *
- * TODO:逆序对问题
+ *
+ *
+ *   思路： 让每个数组成为长度为1的有序区间，然后将相邻的长度为1的有序区间合并，等到长度来2的有序区间
+ *          依次进行，直到让数组中的数合并为一个有序区间，排序结束
  */
-public class MergeSort {
+public class B1_MergeSort {
 
     public static void mergeSort(int[] arr) {
         if (arr == null || arr.length < 2) {

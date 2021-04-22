@@ -3,8 +3,12 @@ package cn.xy.algorithm.sort;
 /**
  * @author XiangYu
  * @create2020-11-04-0:54
+ *
+ *  插入排序的改良算法
+ *
+ *
  */
-public class ShellSort {
+public class B4_ShellSort {
     /**
      * 希尔排序
      * 缩小增量排序

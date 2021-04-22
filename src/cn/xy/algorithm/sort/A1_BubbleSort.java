@@ -7,12 +7,11 @@ import cn.xy.utils.Utils;
  * @create2020-11-04-0:49
  * 冒泡排序
  */
-public class BubbleSort {
+public class A1_BubbleSort {
 
 
     public static void main(String[] args) {
         Integer[] randomArray = Utils.getRandomArray(50, 1, 200);
-        bubbleSortTest(randomArray);
 
         Utils.printArray(randomArray);
         boolean sorted = Utils.isSorted(randomArray);
@@ -22,28 +21,6 @@ public class BubbleSort {
             System.out.println("fuck");
         }
     }
-
-
-
-    /**
-     * 冒泡排序
-     *
-     * @param array
-     */
-    public static void bubbleSort(Comparable[] array) {
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array.length - 1 - i; j++) {
-                if (array[j].compareTo(array[j + 1]) > 0) {
-                    Utils.swap(array, j, j + 1);
-                }
-            }
-        }
-    }
-
-
-
-
-
 
     /**
      * 冒泡排序改进,加入一个flag标志

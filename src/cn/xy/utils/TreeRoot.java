@@ -1,4 +1,4 @@
-package cn.xy.algorithm.BinaryTree;
+package cn.xy.utils;
 
 public class TreeRoot {
     private TreeNode treeRoot;

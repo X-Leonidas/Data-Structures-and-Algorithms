@@ -1,6 +1,6 @@
 package cn.xy.leetcode.middle.BinaryTree;
 
-import cn.xy.algorithm.BinaryTree.TreeNode;
+import cn.xy.utils.TreeNode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
