@@ -51,12 +51,6 @@ public class A0316RemoveDuplicateLetters {
         char index = 'a';
 
         for (char aChar : chars) {
-
-
-
-
-
-
           letters[aChar-'a']--;
         }
         return  sb.toString();
