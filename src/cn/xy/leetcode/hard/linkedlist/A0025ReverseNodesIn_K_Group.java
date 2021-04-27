@@ -113,12 +113,12 @@ public class A0025ReverseNodesIn_K_Group {
      * @return
      */
     public ListNode reverseKGroup2(ListNode head, int k) {
-        //TODO:
+        //头节点
         ListNode hair = new ListNode(0);
         hair.next = head;
         ListNode pre = hair;
-
         while (head != null) {
+            //先让tail节点走k个
             ListNode tail = pre;
             // 查看剩余部分长度是否大于等于 k
             for (int i = 0; i < k; ++i) {
@@ -127,7 +127,9 @@ public class A0025ReverseNodesIn_K_Group {
                     return hair.next;
                 }
             }
+            //下一个接头的点
             ListNode nex = tail.next;
+            //将k个节点反转
             ListNode[] reverse = myReverse(head, tail);
             head = reverse[0];
             tail = reverse[1];
@@ -137,9 +139,40 @@ public class A0025ReverseNodesIn_K_Group {
             pre = tail;
             head = tail.next;
         }
-
         return hair.next;
     }
+
+
+    public ListNode reverseKGroup3(ListNode head, int k) {
+
+        ListNode hair = new ListNode(0);
+        ListNode pre = hair;
+        hair.next = head;
+        while(head != null){
+            ListNode tail =pre;
+            for (int i = 0; i < k; i++) {
+                tail = tail.next;
+                if(tail == null){
+                    return hair.next;
+                }
+            }
+            ListNode nex = tail.next;
+            ListNode[] res = myReverse2(head, tail);
+
+            head = res[0];
+            tail = res[1];
+            pre.next = head;
+            tail.next = nex;
+
+            pre =tail;
+            head = tail.next;
+
+        }
+        return hair.next;
+    }
+
+
+
 
     public ListNode[] myReverse(ListNode head, ListNode tail) {
         ListNode prev = tail.next;
@@ -152,4 +185,17 @@ public class A0025ReverseNodesIn_K_Group {
         }
         return new ListNode[]{tail, head};
     }
+
+    public ListNode[] myReverse2(ListNode head, ListNode tail) {
+        ListNode pre  = tail.next;
+        ListNode p = head;
+        while(pre != tail){
+            ListNode temp  = p.next;
+            p.next = pre;
+            pre = p;
+            p = temp;
+        }
+        return new ListNode[]{tail,head};
+    }
+
 }
