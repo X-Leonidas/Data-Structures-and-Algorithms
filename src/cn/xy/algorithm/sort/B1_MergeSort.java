@@ -20,7 +20,7 @@ public class B1_MergeSort {
         if (arr == null || arr.length < 2) {
             return;
         }
-        mergeSort(arr, 0, arr.length - 1);
+        mergeSort2(arr, 0, arr.length - 1);
     }
 
     public static void mergeSort(int[] arr, int l, int r) {
@@ -35,10 +35,14 @@ public class B1_MergeSort {
     }
 
     public static void merge(int[] arr, int l, int m, int r) {
+        //辅助数组
         int[] help = new int[r - l + 1];
         int i = 0;
+        //第一个排序的数组的起点
         int p1 = l;
+        //第二个排序的数组的起点
         int p2 = m + 1;
+        //先合并
         while (p1 <= m && p2 <= r) {
             help[i++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++];
         }
@@ -136,6 +140,51 @@ public class B1_MergeSort {
         printArray(arr);
 
     }
+
+
+
+
+
+    public static void mergeSort2(int[] arr, int l,int r){
+        if(l == r){
+            return;
+        }
+
+        int mid = l + ((r-l) >> 1);
+
+
+        mergeSort2(arr,l,mid);
+        mergeSort2(arr,mid+1,r);
+
+
+        merge2(arr,l,mid,r);
+
+    }
+    public static void merge2(int[] arr ,int l, int mid ,int r){
+        int[] help = new int[r-l +1];
+
+        int i = 0;
+        int p1 = l;
+        int p2 = mid+1;
+        while(p1 <= mid && p2 <= r){
+            help[i++] = arr[p1] < arr[p2] ? arr[p1++]:arr[p2++];
+        }
+
+
+        while(p1 <= mid){
+            help[i++] = arr[p1++];
+        }
+
+        while(p2 <= r){
+            help[i++] = arr[p2++];
+        }
+
+        for (int j = 0; j < help.length; j++) {
+            arr[j+l] = help[j];
+        }
+
+    }
+
 }
 
 

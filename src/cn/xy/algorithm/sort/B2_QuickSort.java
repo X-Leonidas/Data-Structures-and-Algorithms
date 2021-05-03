@@ -40,15 +40,14 @@ public class B2_QuickSort {
     /**
      *
      * @param arr
-     * @param l
-     * @param r
+     * @param l  左区间
+     * @param r  右区间
      */
     public static void quickSort(int[] arr, int l, int r) {
         if (l < r) {
-            //随机快排
+            //随机将一个数换到末尾
             swap(arr, l + (int) (Math.random() * (r - l + 1)), r);
             int[] p = partition(arr, l, r);
-
 
             //从等于num的数组下标左侧开始
             quickSort(arr, l, p[0] - 1);
@@ -66,14 +65,19 @@ public class B2_QuickSort {
      * @return
      */
     public static int[] partition(int[] arr, int l, int r) {
+        //左指针
         int less = l - 1;
+        //右指针
         int more = r;
         while (l < more) {
             if (arr[l] < arr[r]) {
+                //l与less的下一个交换，l进1
                 swap(arr, ++less, l++);
             } else if (arr[l] > arr[r]) {
+                //l与more的下一个交换，l不变
                 swap(arr, --more, l);
             } else {
+                //与r相等的直接++
                 l++;
             }
         }
