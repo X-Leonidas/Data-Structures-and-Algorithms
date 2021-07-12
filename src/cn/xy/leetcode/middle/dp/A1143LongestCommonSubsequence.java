@@ -37,7 +37,8 @@ public class A1143LongestCommonSubsequence {
 
     public int longestCommonSubsequence(String text1, String text2) {
         int n1 = text1.length(), n2 = text2.length();
-        char[] cs1 = text1.toCharArray(), cs2 = text2.toCharArray();
+        char[] cs1 = text1.toCharArray();
+        char[] cs2 = text2.toCharArray();
         int[][] dp = new int[n1 + 1][n2 + 1];
         for (int i = 1; i <= n1; i++) {
             for (int j = 1; j <= n2; j++) {
@@ -49,5 +50,51 @@ public class A1143LongestCommonSubsequence {
             }
         }
         return dp[n1][n2];
+    }
+
+
+    /**
+     *
+     * @param s1
+     * @param s2
+     * @return 输出公共的子序列
+     */
+    public String LCS (String s1, String s2) {
+        int n1 = s1.length();
+        int n2 = s2.length();
+        char[] cs1 = s1.toCharArray();
+        char[] cs2 = s2.toCharArray();
+        int[][] dp = new int[n1 + 1][n2 + 1];
+        for (int i = 1; i <= n1; i++) {
+            for (int j = 1; j <= n2; j++) {
+                if (cs1[i - 1] == cs2[j - 1]) {
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                } else {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+        //找出一个最长的公共子序列
+        StringBuilder sb = new StringBuilder();
+        int s1L = n1;
+        int s2L = n2;
+        while(s1L > 0 && s2L > 0){
+            if (cs1[s1L-1] == cs2[s2L-1]){
+                sb.append(cs1[s1L - 1]);
+                s1L--;
+                s2L--;
+            }else{
+                if (dp[s1L-1][s2L] > dp[s1L][s2L-1]){
+                    s1L--;
+                }else{
+                    s2L--;
+                }
+            }
+        }
+        if(sb.length() == 0){
+            return "-1";
+        }
+
+        return sb.reverse().toString();
     }
 }

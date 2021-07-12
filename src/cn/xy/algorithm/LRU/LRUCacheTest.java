@@ -1,5 +1,8 @@
 package cn.xy.algorithm.LRU;
 
+import cn.xy.utils.TreeNode;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -106,9 +109,6 @@ public class LRUCacheTest {
        removeHead(res);
        return  res;
    }
-
-
-
 
 }
 
