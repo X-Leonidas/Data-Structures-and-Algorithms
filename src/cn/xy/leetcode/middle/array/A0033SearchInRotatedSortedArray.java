@@ -1,3 +1,5 @@
+package cn.xy.leetcode.middle.array;
+
 /**
  * @author xiangyu
  * @date 2021/7/20 10:45 上午
