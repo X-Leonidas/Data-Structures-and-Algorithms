@@ -29,7 +29,6 @@ package cn.xy.leetcode.middle.array;
  * @create2021-08-14-23:51
  */
 public class A0079WordSearch {
-
     public boolean[][] flag;
     public boolean result = false;
 

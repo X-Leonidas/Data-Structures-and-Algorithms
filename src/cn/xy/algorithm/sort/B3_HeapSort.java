@@ -106,7 +106,6 @@ public class B3_HeapSort {
         PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(11, new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
-                // TODO Auto-generated method stub
                 return o2.compareTo(o1);
             }
 
