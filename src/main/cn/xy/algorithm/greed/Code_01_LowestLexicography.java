@@ -1,4 +1,4 @@
-package xy.algorithm.greed;
+package cn.xy.algorithm.greed;
 
 import java.util.Arrays;
 import java.util.Comparator;

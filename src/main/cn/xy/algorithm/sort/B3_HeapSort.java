@@ -1,4 +1,4 @@
-package xy.algorithm.sort;
+package cn.xy.algorithm.sort;
 
 import java.util.Arrays;
 import java.util.Comparator;

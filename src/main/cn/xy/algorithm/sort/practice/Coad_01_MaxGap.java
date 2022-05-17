@@ -1,4 +1,4 @@
-package xy.algorithm.sort.practice;
+package cn.xy.algorithm.sort.practice;
 
 import java.util.Arrays;
 

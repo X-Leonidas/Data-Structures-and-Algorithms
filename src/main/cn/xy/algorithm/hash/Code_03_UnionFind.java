@@ -1,4 +1,4 @@
-package xy.algorithm.hash;
+package cn.xy.algorithm.hash;
 
 import java.util.HashMap;
 import java.util.List;

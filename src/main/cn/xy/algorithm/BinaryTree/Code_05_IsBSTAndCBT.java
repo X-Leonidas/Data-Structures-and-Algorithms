@@ -1,4 +1,4 @@
-package xy.algorithm.BinaryTree;
+package cn.xy.algorithm.BinaryTree;
 
 import java.util.LinkedList;
 import java.util.Queue;

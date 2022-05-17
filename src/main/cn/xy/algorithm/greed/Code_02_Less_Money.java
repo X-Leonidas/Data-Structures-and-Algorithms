@@ -1,4 +1,4 @@
-package xy.algorithm.greed;
+package cn.xy.algorithm.greed;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;

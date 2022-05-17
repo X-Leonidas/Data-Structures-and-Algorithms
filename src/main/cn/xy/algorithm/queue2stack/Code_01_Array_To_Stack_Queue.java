@@ -1,4 +1,4 @@
-package xy.algorithm.queue2stack;
+package cn.xy.algorithm.queue2stack;
 
 /**
  * @author XiangYu

@@ -1,4 +1,4 @@
-package xy.algorithm.linkedlist;
+package cn.xy.algorithm.linkedlist;
 
 /**
  * @author XiangYu

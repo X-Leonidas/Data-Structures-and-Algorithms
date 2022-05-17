@@ -1,4 +1,4 @@
-package xy.algorithm.kmp;
+package cn.xy.algorithm.kmp;
 
 /**
  * 给定一个字符串str1， 只能往str1的后面添加字符变成str2

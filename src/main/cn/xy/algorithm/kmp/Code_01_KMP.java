@@ -1,4 +1,4 @@
-package xy.algorithm.kmp;
+package cn.xy.algorithm.kmp;
 
 /**
  * @author XiangYu

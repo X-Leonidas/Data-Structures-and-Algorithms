@@ -1,4 +1,4 @@
-package xy.algorithm.BinaryTree.bst;
+package cn.xy.algorithm.BinaryTree.bst;
 
 /**
  * Not implemented by zuochengyun

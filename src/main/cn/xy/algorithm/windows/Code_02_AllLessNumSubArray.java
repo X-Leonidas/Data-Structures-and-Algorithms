@@ -1,4 +1,4 @@
-package xy.algorithm.windows;
+package cn.xy.algorithm.windows;
 
 import java.util.LinkedList;
 import java.util.Scanner;

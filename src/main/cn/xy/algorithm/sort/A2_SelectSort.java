@@ -1,4 +1,4 @@
-package xy.algorithm.sort;
+package cn.xy.algorithm.sort;
 
 import cn.xy.utils.Utils;
 

@@ -1,4 +1,4 @@
-package xy.algorithm.queue2stack.MonotonicallyStack;
+package cn.xy.algorithm.queue2stack.MonotonicallyStack;
 
 import java.util.HashMap;
 import java.util.Stack;

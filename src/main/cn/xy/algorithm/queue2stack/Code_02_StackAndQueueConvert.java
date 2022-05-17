@@ -1,4 +1,4 @@
-package xy.algorithm.queue2stack;
+package cn.xy.algorithm.queue2stack;
 
 import java.util.LinkedList;
 import java.util.Queue;

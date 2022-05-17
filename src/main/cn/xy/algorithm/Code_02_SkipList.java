@@ -1,4 +1,4 @@
-package xy.algorithm;
+package cn.xy.algorithm;
 
 import java.util.ArrayList;
 import java.util.Iterator;

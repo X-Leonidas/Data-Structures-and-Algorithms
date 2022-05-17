@@ -1,4 +1,4 @@
-package xy.algorithm.manacher;
+package cn.xy.algorithm.manacher;
 
 /**
  * @author XiangYu

@@ -1,4 +1,4 @@
-package xy.algorithm.linkedlist;
+package cn.xy.algorithm.linkedlist;
 
 import java.util.HashMap;
 

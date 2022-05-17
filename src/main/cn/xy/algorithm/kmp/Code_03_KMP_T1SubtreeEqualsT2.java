@@ -1,4 +1,4 @@
-package xy.algorithm.kmp;
+package cn.xy.algorithm.kmp;
 
 /**
  * 两个二叉树T1和T2， 返回T1的某个子树结构是否与T2的结构相等

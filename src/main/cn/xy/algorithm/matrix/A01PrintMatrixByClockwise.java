@@ -1,4 +1,4 @@
-package xy.algorithm.matrix;
+package cn.xy.algorithm.matrix;
 
 /**
  * @author XiangYu

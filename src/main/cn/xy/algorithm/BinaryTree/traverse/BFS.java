@@ -1,4 +1,4 @@
-package xy.algorithm.BinaryTree.traverse;
+package cn.xy.algorithm.BinaryTree.traverse;
 
 import cn.xy.utils.TreeNode;
 

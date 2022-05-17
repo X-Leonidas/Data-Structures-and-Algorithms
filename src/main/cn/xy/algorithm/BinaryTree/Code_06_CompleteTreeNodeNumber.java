@@ -1,4 +1,4 @@
-package xy.algorithm.BinaryTree;
+package cn.xy.algorithm.BinaryTree;
 
 /**
  * @author XiangYu

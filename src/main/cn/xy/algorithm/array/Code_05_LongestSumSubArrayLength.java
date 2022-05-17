@@ -1,4 +1,4 @@
-package xy.algorithm.array;
+package cn.xy.algorithm.array;
 
 import java.util.HashMap;
 
