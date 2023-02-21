@@ -1,9 +1,6 @@
 package cn.xy.leetcode.middle.array;
 
 
-import java.awt.event.HierarchyBoundsAdapter;
-import java.util.Arrays;
-
 /**
  * @author XiangYu
  * @Create 2021年7月16日23点35分
