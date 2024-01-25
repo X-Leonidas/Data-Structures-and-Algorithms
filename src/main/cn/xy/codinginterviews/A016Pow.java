@@ -1,4 +1,4 @@
-package xy.codinginterviews;
+package cn.xy.codinginterviews;
 
 /**
  * @author XiangYu

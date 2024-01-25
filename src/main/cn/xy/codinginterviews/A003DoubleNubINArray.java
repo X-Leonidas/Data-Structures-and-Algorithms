@@ -1,4 +1,4 @@
-package xy.codinginterviews;
+package cn.xy.codinginterviews;
 
 import java.util.HashMap;
 import java.util.HashSet;
