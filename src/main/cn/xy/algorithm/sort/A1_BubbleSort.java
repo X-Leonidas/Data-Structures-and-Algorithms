@@ -4,20 +4,17 @@ import cn.xy.utils.Utils;
 
 /**
  * @author XiangYu
- * @create2020-11-04-0:49
- * 冒泡排序
+ * @create2020-11-04-0:49 冒泡排序
  */
 public class A1_BubbleSort {
-
-
     public static void main(String[] args) {
         Integer[] randomArray = Utils.getRandomArray(50, 1, 200);
 
         Utils.printArray(randomArray);
         boolean sorted = Utils.isSorted(randomArray);
-        if(sorted){
+        if (sorted) {
             System.out.println("Success");
-        }else{
+        } else {
             System.out.println("fuck");
         }
     }
@@ -38,28 +35,29 @@ public class A1_BubbleSort {
             }
             if (!flag) {
                 break;
+            } else {
+                flag = false;
             }
         }
     }
 
 
-    public static void bubbleSortTest(Integer[] array){
+    public static void bubbleSortTest(Integer[] array) {
         boolean flag = false;
 
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array.length - i - 1; j++) {
-                if(array[j] > array[j+1]){
-                    Utils.swap(array,j,j+1);
+                if (array[j] > array[j + 1]) {
+                    Utils.swap(array, j, j + 1);
                     flag = true;
                 }
             }
 
-
-            if(!flag){
+            if (!flag) {
                 break;
             }
         }
-        
+
     }
 
 
@@ -87,7 +85,6 @@ public class A1_BubbleSort {
     }
 
     public static void bubbleSort4(Comparable[] array) {
-
         int n = array.length;
         int newn;
         do {

@@ -17,7 +17,7 @@ public class A2_SelectSort {
         for (int n = 0; n < array.length; n++) {
             int max = array[n];
             for (int m = n + 1; m < array.length; m++) {
-                if (array[m] > max) {
+                if (array[m] < max) {
                     array[n] = array[m];
                     array[m] = max;
                 }
