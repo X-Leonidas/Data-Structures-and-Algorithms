@@ -1,4 +1,4 @@
-package cn.xy.leetcode.middle.BinaryTree;
+package cn.xy.leetcode.middle.binarytree;
 
 import cn.xy.utils.TreeNode;
 
