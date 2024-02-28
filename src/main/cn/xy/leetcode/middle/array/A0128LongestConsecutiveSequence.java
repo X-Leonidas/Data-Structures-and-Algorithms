@@ -40,12 +40,12 @@ class A0128LongestConsecutiveSequence {
         HashSet<Integer> set = new HashSet<>();
 
         for (int num : nums) {
-
             set.add(num);
         }
 
         int longerst = 1;
         for (Integer cur : set) {
+            // 拿到最小值， 优化
             if (!set.contains(cur - 1)) {
                 int curnum = cur;
                 int curSize = 1;
@@ -53,7 +53,6 @@ class A0128LongestConsecutiveSequence {
                     curnum++;
                     curSize++;
                 }
-
                 longerst = Math.max(curSize, longerst);
             }
         }
