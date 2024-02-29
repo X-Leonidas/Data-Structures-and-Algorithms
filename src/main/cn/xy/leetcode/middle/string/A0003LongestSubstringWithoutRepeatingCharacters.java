@@ -1,6 +1,8 @@
 package cn.xy.leetcode.middle.string;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -37,8 +39,10 @@ import java.util.Set;
  * s 由英文字母、数字、符号和空格组成
  */
 public class A0003LongestSubstringWithoutRepeatingCharacters {
+
+
     public static int lengthOfLongestSubstring(String s) {
-        Set<Character> set = new HashSet<Character>();
+        Set<Character> set = new HashSet<>();
         int length = s.length();
         // 右指针，初始值为 -1
         int right = -1, ans = 0;
@@ -60,10 +64,32 @@ public class A0003LongestSubstringWithoutRepeatingCharacters {
     }
 
 
-    //数字实现
+    public static void main(String[] args) {
+        System.out.println(lengthOfLongestSubstring2("abba"));
+    }
+
+    public static int lengthOfLongestSubstring2(String s) {
+        int n = s.length(), ans = 0;
+        Map<Character, Integer> map = new HashMap<>(64);
+        int start = 0;
+        for (int end = 0; end < n; end++) {
+            char alpha = s.charAt(end);
+            // 如果存在，则拿到第一次出现这个字符的位置 + 1做为开始
+            if (map.containsKey(alpha)) {
+                // 解决abba的问题，start只能越来越大，不能越来越小
+                start = Math.max(map.get(alpha) + 1, start);
+            }
+            map.put(s.charAt(end), end);
+            ans = Math.max(ans, end - start + 1);
+
+        }
+        return ans;
+    }
+
+    /**
+     * 数组实现
+     */
     public int maxLength(int[] arr) {
-
-
         HashSet<Integer> set = new HashSet<>();
         int lenth = arr.length;
         int res = 0;
@@ -72,9 +98,8 @@ public class A0003LongestSubstringWithoutRepeatingCharacters {
             if (i != 0) {
                 set.remove(arr[i - 1]);
             }
-
-            while (right < lenth - 1 && !set.contains(arr[right+1])) {
-                set.add(arr[right+1]);
+            while (right < lenth - 1 && !set.contains(arr[right + 1])) {
+                set.add(arr[right + 1]);
                 right++;
 
             }
