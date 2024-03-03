@@ -17,7 +17,7 @@ package cn.xy.algorithm.array;
  *      2.把0排除掉，此时0~T变为1~T,校验T+1开的最小累加和是否可以加入当前数组，用滑窗滑过整个数组，结果就出来了
  *
  *
- *
+ *A
  *
  */
 public class Code_06_LongestSubarrayLessSumAwesomeSolution {
