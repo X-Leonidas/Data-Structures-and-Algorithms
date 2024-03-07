@@ -15,18 +15,20 @@ import cn.xy.utils.ListNode;
  * 输入: 1->2->2->1
  * 输出: true
  * 进阶：
- * 你能否用 O(n) 时间复杂度和 O(1) 空间复杂度解决此题？
+ * 你能否用O(n) 时间复杂度和 O(1) 空间复杂度解决此题？
  */
 public class A0234PalindromeLinkedList {
 
     public boolean isPalindrome(ListNode head) {
         //排除只有一个元素的情况
-        if(head == null || head.next == null) {
+        if (head == null || head.next == null) {
             return true;
         }
-        ListNode slow = head, fast = head;
+        ListNode slow = head;
+        ListNode fast = head;
         ListNode pre = null;
-        while(fast != null && fast.next != null) {
+        // 快慢指针找中点，并且反转前面的链表
+        while (fast != null && fast.next != null) {
             fast = fast.next.next;
             ListNode temp = slow.next;
             slow.next = pre;
@@ -34,11 +36,11 @@ public class A0234PalindromeLinkedList {
             slow = temp;
         }
         //奇数情况下,
-        if(fast != null) {
+        if (fast != null) {
             slow = slow.next;
         }
-        while(pre != null && slow != null) {
-            if(pre.val != slow.val) {
+        while (pre != null && slow != null) {
+            if (pre.val != slow.val) {
                 return false;
             }
             pre = pre.next;

@@ -46,6 +46,7 @@ public class A0024SwapNodesInPairs {
 
     /**
      * 官方题解
+     *
      * @param head
      * @return
      */
@@ -53,7 +54,7 @@ public class A0024SwapNodesInPairs {
         ListNode pre = new ListNode(0);
         pre.next = head;
         ListNode temp = pre;
-        while(temp.next != null && temp.next.next != null) {
+        while (temp.next != null && temp.next.next != null) {
             ListNode start = temp.next;
             ListNode end = temp.next.next;
             // 将第二个连接过来

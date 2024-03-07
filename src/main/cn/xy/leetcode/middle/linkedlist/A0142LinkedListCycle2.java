@@ -33,7 +33,26 @@ public class A0142LinkedListCycle2 {
         return null;
     }
 
-    //TODO： 扩展 快慢指针
+    public ListNode reverseList(ListNode head) {
+        ListNode fast = head, slow = head;
+        while (true) {
+            if (fast == null || fast.next == null) {
+                return null;
+            }
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                break;
+            }
+        }
+        // 快慢指针重合后，fast重新从head出发，第一次重合则是入环点
+        fast = head;
+        while (slow != fast) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+        return fast;
+    }
 
 
 }

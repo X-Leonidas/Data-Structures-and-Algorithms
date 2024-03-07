@@ -6,13 +6,9 @@ import java.util.ArrayList;
 
 /**
  * @author XiangYu
- * @create2021-05-01-11:10
- *
- *
- * 给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。
+ * @create2021-05-01-11:10 给你一个链表，删除链表的倒数第n个结点，并且返回链表的头结点。
  * <p>
  * 进阶：你能尝试使用一趟扫描实现吗？
- * <p>
  * <p>
  * 示例 1：
  * 输入：head = [1,2,3,4,5], n = 2
@@ -49,7 +45,6 @@ public class A0019RemoveNthNodeFromEndOfList {
         }
 
         int index = length - n;
-
         if (index > 0 && index + 1 < length) {
             listNodes.get(index - 1).next = listNodes.get(index + 1);
         } else if (index == 0) {
@@ -70,55 +65,22 @@ public class A0019RemoveNthNodeFromEndOfList {
      * @return
      */
     public ListNode removeNthFromEnd2(ListNode head, int n) {
-        ListNode hair = new ListNode(0);
-        hair.next = head;
-        ListNode first = head;
-        ListNode slow =  hair;
+        ListNode pre = new ListNode(0);
+        pre.next = head;
+        ListNode fast = head;
+        ListNode slow = pre;
 
-        for(int i=0; i < n; i++){
-            first = first.next;
+        for (int i = 0; i < n; i++) {
+            fast = fast.next;
         }
 
-        while(first != null){
+        while (fast != null) {
             slow = slow.next;
-            first = first.next;
+            fast = fast.next;
         }
-
+        // 因为pre是附加的一个，slow从pre开始，当fast走完时，最小也得差一个，所以slow.next 没有NPE的问题
         slow.next = slow.next.next;
 
-
-        return hair.next;
+        return pre.next;
     }
-
-    /**
-     * 输出倒数第K个节点
-     * @param head
-     * @param n
-     * @return
-     */
-    public ListNode FindKthToTail (ListNode head, int n) {
-        if(head == null){
-            return null;
-        }
-        ListNode hair = new ListNode(0);
-        hair.next = head;
-        ListNode first = head;
-        ListNode slow =  hair;
-        for(int i=0; i < n; i++){
-            if(first == null){
-                return  null;
-            }
-            first = first.next;
-        }
-
-        while(first != null){
-            slow = slow.next;
-            first = first.next;
-        }
-
-        return slow.next;
-    }
-
-
-
 }

@@ -1,6 +1,7 @@
 package cn.xy.leetcode.middle.linkedlist;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * @author xiangyu
@@ -21,7 +22,7 @@ import java.util.HashMap;
  * random_index：随机指针指向的节点索引（范围从 0 到 n-1）；如果不指向任何节点，则为  null 。
  * 你的代码 只 接受原链表的头节点 head 作为传入参数。
  */
-public class A0138CoypListWithRandomPointer {
+public class A0138CopyListWithRandomPointer {
 
     public static void main(String[] args) {
         Node node = new Node(7);
