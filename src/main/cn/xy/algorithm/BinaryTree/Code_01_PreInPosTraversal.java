@@ -55,7 +55,7 @@ public class Code_01_PreInPosTraversal {
 
 
 	/**
-	 * 后续遍历
+	 * 后序遍历
 	 * @param head
 	 */
 	public static void posOrderRecur(Node head) {
@@ -74,7 +74,7 @@ public class Code_01_PreInPosTraversal {
 	public static void preOrderUnRecur(Node head) {
 		System.out.print("pre-order: ");
 		if (head != null) {
-			Stack<Node> stack = new Stack<Node>();
+			Stack<Node> stack = new Stack<>();
 			stack.add(head);
 			while (!stack.isEmpty()) {
 				head = stack.pop();
@@ -97,7 +97,7 @@ public class Code_01_PreInPosTraversal {
 	public static void inOrderUnRecur(Node head) {
 		System.out.print("in-order: ");
 		if (head != null) {
-			Stack<Node> stack = new Stack<Node>();
+			Stack<Node> stack = new Stack<>();
 			while (!stack.isEmpty() || head != null) {
 				if (head != null) {
 					stack.push(head);

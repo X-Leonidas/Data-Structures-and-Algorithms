@@ -54,4 +54,17 @@ public class A0226InvertBinaryTree {
         root.right = l;
         return root;
     }
+
+    public TreeNode invertTree3(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+        invertTree3(root.left);
+        invertTree3(root.right);
+
+        return root;
+    }
 }

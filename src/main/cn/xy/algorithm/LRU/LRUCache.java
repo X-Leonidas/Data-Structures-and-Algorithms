@@ -33,7 +33,7 @@ public class LRUCache {
             this.value = value;
         }
     }
-    //双端链表
+    //手动实现的双端链表
     public static class NodeDoubleLinkedList<V> {
         private Node<V> head;
         private Node<V> tail;
@@ -56,7 +56,7 @@ public class LRUCache {
                 this.tail = newNode;
             }
         }
-        //更新元素到链表尾部
+        //更新操作后需要 更新元素到链表尾部
         public void moveNodeToTail(Node<V> node) {
             if (this.tail == node) {
                 return;
@@ -65,9 +65,11 @@ public class LRUCache {
                 this.head = node.next;
                 this.head.last = null;
             } else {
+                // 把链表摘出来
                 node.last.next = node.next;
                 node.next.last = node.last;
             }
+            // 移动到末尾
             node.last = this.tail;
             node.next = null;
             this.tail.next = node;
@@ -102,9 +104,9 @@ public class LRUCache {
             if (capacity < 1) {
                 throw new RuntimeException("should be more than 0.");
             }
-            this.keyNodeMap = new HashMap<K, Node<V>>();
-            this.nodeKeyMap = new HashMap<Node<V>, K>();
-            this.nodeList = new NodeDoubleLinkedList<V>();
+            this.keyNodeMap = new HashMap<>();
+            this.nodeKeyMap = new HashMap<>();
+            this.nodeList = new NodeDoubleLinkedList<>();
             this.capacity = capacity;
         }
 

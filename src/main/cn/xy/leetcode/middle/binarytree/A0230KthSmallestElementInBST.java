@@ -64,10 +64,10 @@ public class A0230KthSmallestElementInBST {
         if (root == null) {
             return;
         }
-        inOrderTraversal(root.left);
         if (k == 0) {
             return;
         }
+        inOrderTraversal(root.left);
         --k;
         if (k == 0) {
             res = root.val;

@@ -15,28 +15,42 @@ import cn.xy.utils.TreeNode;
  * @create2021-08-18-21:28
  */
 public class A0098ValidateBinarySearchTree {
-    // TODO:https://leetcode-cn.com/problems/unique-binary-search-trees/solution/bu-tong-de-er-cha-sou-suo-shu-by-leetcode-solution/
-    long pre = Long.MIN_VALUE;
+    long preValue = Long.MIN_VALUE;
 
     public boolean isValidBST(TreeNode root) {
-        return process(root);
+        return midTraversal(root);
     }
 
-    private boolean process(TreeNode root) {
+    private boolean midTraversal(TreeNode root) {
         if (root == null) {
             return true;
         }
-        // 访问左子树
-        if (!isValidBST(root.left)) {
+
+        if (!midTraversal(root.left)) {
             return false;
         }
-        // 访问当前节点：如果当前节点小于等于中序遍历的前一个节点，说明不满足BST，返回 false；否则继续遍历。
-        if (root.val <= pre) {
+
+        if (root.val <= preValue) {
             return false;
         }
-        pre = root.val;
-        // 访问右子树
-        return isValidBST(root.right);
+
+        preValue = root.val;
+
+        return midTraversal(root.right);
+    }
+
+    public boolean isValidBST2(TreeNode root) {
+        return isValidBST2(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
+
+    public boolean isValidBST2(TreeNode node, long lower, long upper) {
+        if (node == null) {
+            return true;
+        }
+        if (node.val <= lower || node.val >= upper) {
+            return false;
+        }
+        return isValidBST2(node.left, lower, node.val) && isValidBST2(node.right, node.val, upper);
     }
 
 

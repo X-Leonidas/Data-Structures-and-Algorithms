@@ -3,6 +3,8 @@ package cn.xy.leetcode.middle.binarytree;
 import cn.xy.utils.TreeNode;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Stack;
 
 /**
@@ -57,16 +59,24 @@ public class A0114FlattenBinaryTreeToLinkedList {
         if (root == null) {
             return;
         }
-        Stack<TreeNode> stack = new Stack<>();
-        stack.add(root);
+        Deque<TreeNode> stack = new LinkedList<>();
+        stack.push(root);
+        TreeNode prev = null;
         while (!stack.isEmpty()) {
-            root = stack.pop();
-            if (root.right != null) {
-                stack.push(root.right);
+            TreeNode curr = stack.pop();
+            if (prev != null) {
+                prev.left = null;
+                prev.right = curr;
             }
-            if (root.left != null) {
-                stack.push(root.left);
+            TreeNode left = curr.left;
+            TreeNode right = curr.right;
+            if (right != null) {
+                stack.push(right);
             }
+            if (left != null) {
+                stack.push(left);
+            }
+            prev = curr;
         }
     }
 }
