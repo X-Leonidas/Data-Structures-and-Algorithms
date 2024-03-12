@@ -41,17 +41,12 @@ package cn.xy.leetcode.middle.array;
  */
 public class A0200NumberOfIslands {
     public static void main(String[] args) {
-        char[][] grid = {
-                {'1', '1', '0', '0', '0'},
-                {'1', '1', '0', '0', '0'},
-                {'0', '0', '1', '0', '0'},
-                {'0', '0', '0', '1', '1'}
-        };
+        char[][] grid = {{'1', '1', '0', '0', '0'}, {'1', '1', '0', '0', '0'}, {'0', '0', '1', '0', '0'}, {'0', '0', '0', '1', '1'}};
         System.out.println(numIslands2(grid));
     }
 
 
-    public  int numIslands(char[][] grid) {
+    public int numIslands(char[][] grid) {
         int n = grid[0].length;
         int m = grid.length;
 
@@ -67,12 +62,10 @@ public class A0200NumberOfIslands {
                 }
             }
         }
-
-
         return result;
     }
 
-    public  void diffuse(char[][] grid, boolean[][] flags, int i, int j, int maxI, int maxJ) {
+    public void diffuse(char[][] grid, boolean[][] flags, int i, int j, int maxI, int maxJ) {
         // return condition
         if (i > 0 && grid[i - 1][j] == '1' && !flags[i - 1][j]) {
             flags[i - 1][j] = true;
@@ -91,7 +84,6 @@ public class A0200NumberOfIslands {
             diffuse(grid, flags, i, j + 1, maxI, maxJ);
         }
     }
-
 
 
     public static int numIslands2(char[][] grid) {
@@ -117,11 +109,11 @@ public class A0200NumberOfIslands {
             grid[i - 1][j] = '0';
             diffuse2(grid, i - 1, j, maxI, maxJ);
         }
-        if (i < maxI - 1 && grid[i + 1][j] == '1' ) {
+        if (i < maxI - 1 && grid[i + 1][j] == '1') {
             grid[i + 1][j] = '0';
             diffuse2(grid, i + 1, j, maxI, maxJ);
         }
-        if (j > 0 && grid[i][j - 1] == '1' ) {
+        if (j > 0 && grid[i][j - 1] == '1') {
             grid[i][j - 1] = '0';
             diffuse2(grid, i, j - 1, maxI, maxJ);
         }

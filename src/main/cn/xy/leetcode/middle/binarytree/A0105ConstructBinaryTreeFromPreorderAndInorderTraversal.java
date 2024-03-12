@@ -8,8 +8,10 @@ import java.util.HashMap;
  * @author xiangyu
  * @date 2024-02-20 23:15
  * <p>
- * 给定两个整数数组 preorder 和 inorder ，其中 preorder 是二叉树的先序遍历，
- * inorder 是同一棵树的中序遍历，请构造二叉树并返回其根节点。
+ * 给定两个整数数组 preorder 和 inorder ，
+ * 其中 preorder 是二叉树的先序遍历，
+ *     inorder 是同一棵树的中序遍历，
+ * 请构造二叉树并返回其根节点。
  */
 public class A0105ConstructBinaryTreeFromPreorderAndInorderTraversal {
     public static void main(String[] args) {
@@ -65,9 +67,9 @@ public class A0105ConstructBinaryTreeFromPreorderAndInorderTraversal {
         // 左树还有多少个元素
         int leftNum = iRootIndex - iStart;
 
-        root.left = buildHelper(preorder, pStart + 1, pStart + leftNum + 1, inorder, iStart, iRootIndex);
+        root.left = buildHelper2(preorder, pStart + 1, pStart + leftNum + 1, inorder, iStart, iRootIndex);
         //pStart + leftNum + 1 跳过左树的元素
-        root.right = buildHelper(preorder, pStart + leftNum + 1, pEnd, inorder, iRootIndex + 1, iEnd);
+        root.right = buildHelper2(preorder, pStart + leftNum + 1, pEnd, inorder, iRootIndex + 1, iEnd);
         return root;
     }
 }
