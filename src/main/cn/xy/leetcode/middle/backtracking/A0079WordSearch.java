@@ -1,4 +1,4 @@
-package cn.xy.leetcode.middle.array;
+package cn.xy.leetcode.middle.backtracking;
 
 /**
  * 给定一个 m x n 二维字符网格 board 和一个字符串单词 word 。如果 word 存在于网格中，返回 true ；否则，返回 false 。
@@ -34,7 +34,6 @@ public class A0079WordSearch {
 
 
     public static void main(String[] args) {
-
         char[][] ints =  {{'A','B','C','E'},{'S','F','C','S'},{'A','D','E','E'}};
         String s = "SEE";
         System.out.println(new A0079WordSearch().exist(ints, s));
@@ -85,6 +84,7 @@ public class A0079WordSearch {
             if (board[y - 1][x] == chars[temp] ) {
                 flag[y - 1][x] = true;
                 process(board, chars, flag, x, y - 1, temp);
+                // 剪枝
                 if (result) {
                     return;
                 }
@@ -114,8 +114,8 @@ public class A0079WordSearch {
             }
         }
 
-        if (x < board[0].length - 1) {
-            if (board[y][x + 1] == chars[temp] && !flag[y][x + 1]) {
+        if (x < board[0].length - 1 && !flag[y][x + 1]) {
+            if (board[y][x + 1] == chars[temp]) {
                 flag[y][x + 1] = true;
                 process(board, chars, flag, x + 1, y, temp);
                 if (result) {
