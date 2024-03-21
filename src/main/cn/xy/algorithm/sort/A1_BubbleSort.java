@@ -7,9 +7,12 @@ import cn.xy.utils.Utils;
  * @create2020-11-04-0:49 冒泡排序
  */
 public class A1_BubbleSort {
+
+
     public static void main(String[] args) {
         Integer[] randomArray = Utils.getRandomArray(50, 1, 200);
 
+        bubbleSort1(randomArray);
         Utils.printArray(randomArray);
         boolean sorted = Utils.isSorted(randomArray);
         if (sorted) {
@@ -18,6 +21,25 @@ public class A1_BubbleSort {
             System.out.println("fuck");
         }
     }
+
+
+    public static void bubbleSort1(Integer[] array) {
+        boolean flag = false;
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length - 1 - i; j++) {
+                if (array[j] > array[j + 1]) {
+                    Utils.swap(array, j, j + 1);
+                    flag = true;
+                }
+            }
+            if (!flag) {
+                return;
+            } else {
+                flag = false;
+            }
+        }
+    }
+
 
     /**
      * 冒泡排序改进,加入一个flag标志
@@ -35,8 +57,6 @@ public class A1_BubbleSort {
             }
             if (!flag) {
                 break;
-            } else {
-                flag = false;
             }
         }
     }
@@ -52,7 +72,6 @@ public class A1_BubbleSort {
                     flag = true;
                 }
             }
-
             if (!flag) {
                 break;
             }
@@ -85,6 +104,7 @@ public class A1_BubbleSort {
     }
 
     public static void bubbleSort4(Comparable[] array) {
+
         int n = array.length;
         int newn;
         do {

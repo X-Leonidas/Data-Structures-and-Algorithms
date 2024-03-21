@@ -1,7 +1,6 @@
 package cn.xy.utils;
 
 import java.lang.reflect.Method;
-import java.util.Random;
 
 /**
  * @author XiangYu
@@ -66,17 +65,32 @@ public class Utils {
      *
      * @param arr
      */
-    public static void printArray(Object arr[]) {
+    public static void printArray(Object[] arr) {
 
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i]);
             System.out.print(' ');
         }
         System.out.println();
-
-        return;
     }
 
+    public static void printArray(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i]);
+            System.out.print(' ');
+        }
+        System.out.println();
+    }
+
+
+
+    public static int[] generateRandomArray(int maxSize, int maxValue) {
+        int[] arr = new int[(int) ((maxSize + 1) * Math.random())];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = (int) ((maxValue + 1) * Math.random()) - (int) (maxValue * Math.random());
+        }
+        return arr;
+    }
 
     /**
      * 生成一个近乎有序的数组
@@ -114,9 +128,9 @@ public class Utils {
     }
 
     //复制数组
-    public static Integer[] copyArray(Integer[] array) {
+    public static int[] copyArray(int[] array) {
         int n = array.length;
-        Integer[] array1 = new Integer[n];
+        int[] array1 = new int[n];
         for (int i = 0; i < n; i++) {
             array1[i] = array[i];
         }
@@ -147,6 +161,22 @@ public class Utils {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+    }
+    public static boolean isEqual(int[] arr1, int[] arr2) {
+        if ((arr1 == null && arr2 != null) || (arr1 != null && arr2 == null)) {
+            return false;
+        }
+        if (arr1 == null && arr2 == null) {
+            return true;
+        }
+        if (arr1.length != arr2.length) {
+            return false;
+        }
+        for (int i = 0; i < arr1.length; i++) {
+            if (arr1[i] != arr2[i]) {
+                return false;
+            }
+        }
+        return true;
     }
 }

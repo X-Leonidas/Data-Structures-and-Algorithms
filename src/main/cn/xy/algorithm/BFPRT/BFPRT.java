@@ -10,7 +10,7 @@ package cn.xy.algorithm.BFPRT;
  * + 用来求元素中第k大（或小）的值或是前k大（或小）的值     时间复杂度**O(N)**
  */
 public class BFPRT {
-    // O(N*logK)
+    // 使用快速排序实现 O(N*logK)
     public static int[] getMinKNumsByHeap(int[] arr, int k) {
         if (k < 1 || k > arr.length) {
             return arr;
@@ -66,7 +66,7 @@ public class BFPRT {
 
 
 
-    // O(N)
+    // 使用BFPRT算法实现O(N)
     public static int[] getMinKNumsByBFPRT(int[] arr, int k) {
         if (k < 1 || k > arr.length) {
             return arr;

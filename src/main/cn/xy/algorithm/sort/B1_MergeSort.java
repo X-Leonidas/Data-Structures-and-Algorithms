@@ -1,26 +1,53 @@
 package cn.xy.algorithm.sort;
 
+import cn.xy.utils.Utils;
+
 import java.util.Arrays;
 
 /**
  * @author XiangYu
- * @create2020-12-04-0:01
- * 归并排序
- *
+ * @create2020-12-04-0:01 归并排序
+ * <p>
  * 时间复杂度 O(N*logN)   空间复杂度 O(N)
- *
- *
- *
- *   思路： 让每个数组成为长度为1的有序区间，然后将相邻的长度为1的有序区间合并，等到长度来2的有序区间
- *          依次进行，直到让数组中的数合并为一个有序区间，排序结束
+ * <p>
+ * <p>
+ * <p>
+ * 思路： 让每个数组成为长度为1的有序区间，然后将相邻的长度为1的有序区间合并，等到长度来2的有序区间
+ * 依次进行，直到让数组中的数合并为一个有序区间，排序结束
  */
 public class B1_MergeSort {
+
+    // for test
+    public static void main(String[] args) {
+        int testTime = 500000;
+        int maxSize = 100;
+        int maxValue = 100;
+        boolean succeed = true;
+        for (int i = 0; i < testTime; i++) {
+            int[] arr1 = Utils.generateRandomArray(maxSize, maxValue);
+            int[] arr2 = Utils.copyArray(arr1);
+            mergeSort(arr1);
+            comparator(arr2);
+            if (!Utils.isEqual(arr1, arr2)) {
+                succeed = false;
+                Utils.printArray(arr1);
+                Utils.printArray(arr2);
+                break;
+            }
+        }
+        System.out.println(succeed ? "Nice!" : "Fucking fucked!");
+
+        int[] arr = Utils.generateRandomArray(maxSize, maxValue);
+        Utils.printArray(arr);
+        mergeSort(arr);
+        Utils.printArray(arr);
+    }
 
     public static void mergeSort(int[] arr) {
         if (arr == null || arr.length < 2) {
             return;
         }
-        mergeSort2(arr, 0, arr.length - 1);
+        mergeSort(arr, 0, arr.length - 1);
     }
 
     public static void mergeSort(int[] arr, int l, int r) {
@@ -63,136 +90,14 @@ public class B1_MergeSort {
         Arrays.sort(arr);
     }
 
-    // for test
-    public static int[] generateRandomArray(int maxSize, int maxValue) {
-        int[] arr = new int[(int) ((maxSize + 1) * Math.random())];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = (int) ((maxValue + 1) * Math.random()) - (int) (maxValue * Math.random());
-        }
-        return arr;
-    }
-
-    // for test
-    public static int[] copyArray(int[] arr) {
-        if (arr == null) {
-            return null;
-        }
-        int[] res = new int[arr.length];
-        for (int i = 0; i < arr.length; i++) {
-            res[i] = arr[i];
-        }
-        return res;
-    }
-
-    // for test
-    public static boolean isEqual(int[] arr1, int[] arr2) {
-        if ((arr1 == null && arr2 != null) || (arr1 != null && arr2 == null)) {
-            return false;
-        }
-        if (arr1 == null && arr2 == null) {
-            return true;
-        }
-        if (arr1.length != arr2.length) {
-            return false;
-        }
-        for (int i = 0; i < arr1.length; i++) {
-            if (arr1[i] != arr2[i]) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    // for test
-    public static void printArray(int[] arr) {
-        if (arr == null) {
-            return;
-        }
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
-        }
-        System.out.println();
-    }
-
-    // for test
-    public static void main(String[] args) {
-        int testTime = 500000;
-        int maxSize = 100;
-        int maxValue = 100;
-        boolean succeed = true;
-        for (int i = 0; i < testTime; i++) {
-            int[] arr1 = generateRandomArray(maxSize, maxValue);
-            int[] arr2 = copyArray(arr1);
-            mergeSort(arr1);
-            comparator(arr2);
-            if (!isEqual(arr1, arr2)) {
-                succeed = false;
-                printArray(arr1);
-                printArray(arr2);
-                break;
-            }
-        }
-        System.out.println(succeed ? "Nice!" : "Fucking fucked!");
-
-        int[] arr = generateRandomArray(maxSize, maxValue);
-        printArray(arr);
-        mergeSort(arr);
-        printArray(arr);
-
-    }
-
-
-
-
-
-    public static void mergeSort2(int[] arr, int l,int r){
-        if(l == r){
-            return;
-        }
-
-        int mid = l + ((r-l) >> 1);
-
-
-        mergeSort2(arr,l,mid);
-        mergeSort2(arr,mid+1,r);
-
-
-        merge2(arr,l,mid,r);
-
-    }
-    public static void merge2(int[] arr ,int l, int mid ,int r){
-        int[] help = new int[r-l +1];
-
-        int i = 0;
-        int p1 = l;
-        int p2 = mid+1;
-        while(p1 <= mid && p2 <= r){
-            help[i++] = arr[p1] < arr[p2] ? arr[p1++]:arr[p2++];
-        }
-
-
-        while(p1 <= mid){
-            help[i++] = arr[p1++];
-        }
-
-        while(p2 <= r){
-            help[i++] = arr[p2++];
-        }
-
-        for (int j = 0; j < help.length; j++) {
-            arr[j+l] = help[j];
-        }
-
-    }
-
 }
 
 
 /**
  * 小和问题
- *
+ * <p>
  * 在一个数组中，每一个数左边比当前数小的数累加起来，叫做这个数组的小和。求一个数组的小和。
- *
+ * <p>
  * 例子
  * [1,3,4,2,5]
  * 1左边比1小的数：没有

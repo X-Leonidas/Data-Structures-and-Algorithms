@@ -4,26 +4,20 @@ import java.util.Arrays;
 
 /**
  * @author XiangYu
- * @create2021-02-27-21:45
- *
- *
- *
- *
- *
- * 基础  ：  荷兰国旗问题
- *  经典快排的问题：当数据出现例如 1，2，3，4，5，6，7的情况时，因为每次都只能排序一个元素
- *  复杂度会上升到 O(N^2)
- *
- *  优化版：使用随机快排  O(N  * logN)
- *
- *    思路：随机选择一个数M,小于M的放在左边，大于M的放在右边，等于M的放在中间
- *              1 具体过程，先随机选择一个数N，与数组末尾的数进行交换
- *              2 设计一个小于等于区间，从左到右依次遍历数组，index小于等于N，则将小于等于区间的下一个数
- *                 与index交换并且小于等于区间向右扩张一位，直到遍历完除N外的所有数
- *              3 将N与小于等于区间的下一位进行交换
- *              4 这就是一次完整的partition的过程
- *         接下来对左右两个部分递归调用上面的排序过程
- *
+ * @create2021-02-27-21:45 基础  ：  荷兰国旗问题
+ * 经典快排的问题：当数据出现例如 1，2，3，4，5，6，7的情况时，因为每次都只能排序一个元素
+ * 复杂度会上升到 O(N^2)
+ * <p>
+ * 优化版：使用随机快排  O(N  * logN)
+ * <p>
+ * 思路：随机选择一个数M,小于M的放在左边，大于M的放在右边，等于M的放在中间
+ * 1 具体过程，先随机选择一个数N，与数组末尾的数进行交换
+ * 2 设计一个小于等于区间，从左到右依次遍历数组，index小于等于N，则将小于等于区间的下一个数
+ * 与index交换并且小于等于区间向右扩张一位，直到遍历完除N外的所有数
+ * 3 将N与小于等于区间的下一位进行交换
+ * 4 这就是一次完整的partition的过程
+ * 接下来对左右两个部分递归调用上面的排序过程
+ * <p>
  * 快速排序
  */
 public class B2_QuickSort {
@@ -38,10 +32,9 @@ public class B2_QuickSort {
     }
 
     /**
-     *
      * @param arr
-     * @param l  左区间
-     * @param r  右区间
+     * @param l   左区间
+     * @param r   右区间
      */
     public static void quickSort(int[] arr, int l, int r) {
         if (l < r) {
@@ -58,23 +51,22 @@ public class B2_QuickSort {
     }
 
     /**
-     * 分组过程，将最后一个作为num，小于num的在数组左边，等于num的在中间，大于num的在右边
-     * @param arr
-     * @param l
-     * @param r
-     * @return
+     * 分组过程，将最后一个作为num，小于num的在数组左边，大于num的在右边
      */
     public static int[] partition(int[] arr, int l, int r) {
-        //左指针
+        //左边界 为什么要 -1？ 这是一个插板，默认在这个位置
         int less = l - 1;
-        //右指针
+        //右边界
         int more = r;
+        int pivot = arr[r];
+        // arr[r] = num 用while 比用for 减少了比较次数
         while (l < more) {
-            if (arr[l] < arr[r]) {
+            if (arr[l] < pivot) {
                 //l与less的下一个交换，l进1
                 swap(arr, ++less, l++);
-            } else if (arr[l] > arr[r]) {
+            } else if (arr[l] > pivot) {
                 //l与more的下一个交换，l不变
+                // 当前more的位置可能是挡板，或者满足条件的数
                 swap(arr, --more, l);
             } else {
                 //与r相等的直接++
@@ -83,8 +75,8 @@ public class B2_QuickSort {
         }
         //将末尾的num移动到中间
         swap(arr, more, r);
-        //返回等于num的数组下标
-        return new int[] { less + 1, more };
+        //返回等于num的数组下标 排除了相等重复遍历的情况
+        return new int[]{less + 1, more};
     }
 
     public static void swap(int[] arr, int i, int j) {
