@@ -9,12 +9,13 @@ import java.util.PriorityQueue;
  * @create2021-02-27-22:41 堆排序
  * <p>
  * 时间复杂度  O(N * logN)  空间复杂度 O(1)
- *
- *
+ * <p>
+ * <p>
  * 堆  优先级队列
  * <p>
  * <p>
- * 完全二叉树的父节点函数为      (n-1)/2    节点高度为Log N
+ * 节点高度为Log N
+ * 完全二叉树的父节点函数为 (n-1)/2
  * 左子节点：  2n+1
  * 右子节点：  2n+2
  * <p>
@@ -23,21 +24,20 @@ import java.util.PriorityQueue;
  * 堆就是一个完全二叉树
  * 大根堆：在完全二叉树中任何一个子树的最大值都是这个子树的头部
  * 小根堆：在完全二叉树中任何一个子树的最小值都是这个子树的头部
- *
- *
+ * <p>
+ * <p>
  * 建立一个大根堆的时间复杂度为  O(N)
- *
- *      大根堆收集较小的  2/N个
- *      小根堆收集较大的  2/N个
- *
- *   堆排序中：
- *      将大根堆中的最大值与该树末尾（数组末尾）交换，获得当前的最大值
- *
- *
- *   思路：建立大根堆，将堆顶元素也就是最大元素与二叉树最后一个值进行交换，将最大值脱离数组
- *         调整脱离最大元素后的大小为N-1大根堆，使其成为大根堆
- *         依次进行上述过程，直到大根堆大小为0
- *
+ * <p>
+ * 大根堆收集较小的  2/N个
+ * 小根堆收集较大的  2/N个
+ * <p>
+ * 堆排序中：
+ * 将大根堆中的最大值与该树末尾（数组末尾）交换，获得当前的最大值
+ * <p>
+ * <p>
+ * 思路：建立大根堆，将堆顶元素也就是最大元素与二叉树最后一个值进行交换，将最大值脱离数组
+ * 调整脱离最大元素后的大小为N-1大根堆，使其成为大根堆
+ * 依次进行上述过程，直到大根堆大小为0
  */
 public class B3_HeapSort {
     public static void heapSort(int[] arr) {
@@ -52,6 +52,8 @@ public class B3_HeapSort {
 
         int size = arr.length;
         //最后一个数和头节点交换  大根堆size-1
+        // 这一步的目的是拿到当前最大的树，然后用--size 把它隔离出去，来实现排序
+        // 大根堆中0位置永远是最大的
         swap(arr, 0, --size);
         while (size > 0) {
             heapify(arr, 0, size);
@@ -62,11 +64,13 @@ public class B3_HeapSort {
 
     /**
      * 将一个数组变成大根堆
+     *
      * @param arr
      * @param index
      */
 
     public static void heapInsert(int[] arr, int index) {
+        // 一直与比他小的头节点交换
         while (arr[index] > arr[(index - 1) / 2]) {
             swap(arr, index, (index - 1) / 2);
             index = (index - 1) / 2;
@@ -75,13 +79,16 @@ public class B3_HeapSort {
 
     /**
      * 大根堆中某一个数变小后，重新调整为大根堆的操作
+     *
      * @param arr
      * @param index
-     * @param size   大根堆的大小
+     * @param size  大根堆的大小
      */
     public static void heapify(int[] arr, int index, int size) {
+        // 左子节点下标
         int left = index * 2 + 1;
         while (left < size) {
+            // 两个子节点最大的
             int largest = left + 1 < size && arr[left + 1] > arr[left] ? left + 1 : left;
             largest = arr[largest] > arr[index] ? largest : index;
             if (largest == index) {
@@ -102,7 +109,7 @@ public class B3_HeapSort {
 
     //PriorityQueue  默认是小根堆
     //大根堆实现传入一个比较器
-    public void bigHeapWithProorityQueue(){
+    public void bigHeapWithProorityQueue() {
         PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(11, new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
@@ -111,14 +118,6 @@ public class B3_HeapSort {
 
         });
     }
-
-
-
-
-
-
-
-
 
 
     // for test
