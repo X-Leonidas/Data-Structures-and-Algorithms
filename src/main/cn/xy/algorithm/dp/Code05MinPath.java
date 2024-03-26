@@ -7,7 +7,7 @@ package cn.xy.algorithm.dp;
  *   给你一个二维数组，二维数组钟的每个数都是正数，要求从左上角走到右下角，
  *   每一步只能向右或者向下。沿途经过的数字要累加起来。返回最小的路径和
  */
-public class Code_05_MinPath {
+public class Code05MinPath {
     public static int minPath1(int[][] matrix) {
         return process1(matrix, matrix.length - 1, matrix[0].length - 1);
     }

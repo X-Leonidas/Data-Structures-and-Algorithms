@@ -9,7 +9,7 @@ import java.util.HashSet;
  * 打印一个字符串的所有的排列组和方式
  *
  */
-public class Code_04_Print_All_Permutations {
+public class Code04PrintAllPermutationsⅡ {
     public static void printAllPermutations1(String str) {
         char[] chs = str.toCharArray();
         process1(chs, 0);

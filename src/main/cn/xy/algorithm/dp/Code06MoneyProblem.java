@@ -8,7 +8,7 @@ package cn.xy.algorithm.dp;
  *
  *
  */
-public class Code_06_Money_Problem {
+public class Code06MoneyProblem {
     public static boolean money1(int[] arr, int aim) {
         return process1(arr, 0, 0, aim);
     }

@@ -23,7 +23,7 @@ package cn.xy.algorithm.dp;
  *
  *
  */
-public class Code_01_CardsInLine {
+public class Code01CardsInLine {
     public static int win1(int[] arr) {
         if (arr == null || arr.length == 0) {
             return 0;

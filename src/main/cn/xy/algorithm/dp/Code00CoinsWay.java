@@ -2,7 +2,8 @@ package cn.xy.algorithm.dp;
 
 /**
  * @author XiangYu
- * @create2021-04-05-20:02 换钱的方法数
+ * @date 2021-04-05-20:02
+ * 换钱的方法数
  * 【 题目】
  * 给定数组arr， arr中所有的值都为正数且不重复。 每个值代表
  * 一种面值的货币， 每种面值的货币可以使用任意张， 再给定一
@@ -28,7 +29,7 @@ package cn.xy.algorithm.dp;
  * 3. 根据递归过程，分析表中的哪些数据可以被确定
  * 3. 找出不被确定的数据项的依赖关系
  */
-public class Code_00_CoinsWay {
+public class Code00CoinsWay {
 
 
     /**
@@ -66,6 +67,7 @@ public class Code_00_CoinsWay {
 
     /**
      * 用map[index][aim]保存已经计算过的递归过程的结果
+     *
      * @param arr
      * @param aim
      * @return
@@ -134,6 +136,7 @@ public class Code_00_CoinsWay {
 
     /**
      * dp[i][j] = dp[i-1][j] + dp[i][j-arr[i]]
+     *
      * @param arr
      * @param aim
      * @return
@@ -160,6 +163,7 @@ public class Code_00_CoinsWay {
 
     /**
      * 空间压缩
+     *
      * @param arr
      * @param aim
      * @return

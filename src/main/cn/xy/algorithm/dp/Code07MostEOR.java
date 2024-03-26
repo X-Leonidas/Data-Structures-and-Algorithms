@@ -10,7 +10,7 @@ import java.util.HashMap;
  *    给定一个数组arr,求异或和为0的最大数组长度。
  *          dp
  */
-public class Code_07_Most_EOR {
+public class Code07MostEOR {
     //:TODO
     public static int mostEOR(int[] arr) {
         int ans = 0;

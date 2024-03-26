@@ -8,7 +8,7 @@ import java.util.List;
  * @create2021-03-12-23:14
  *  打印一个字符串的全部子序列 ，包括空字符串
  */
-public class Code_03_Print_All_Subsquences {
+public class Code03PrintAllSubsquences {
     public static void printAllSubsquence(String str) {
         char[] chs = str.toCharArray();
         process(chs, 0);

@@ -14,7 +14,7 @@ package cn.xy.algorithm.dp;
  *
  *
  */
-public class Code_02_Cow {
+public class Code02Cow {
     public static int cowNumber1(int n) {
         if (n < 1) {
             return 0;

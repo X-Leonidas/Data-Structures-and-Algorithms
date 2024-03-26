@@ -9,7 +9,7 @@ package cn.xy.algorithm.dp;
  *
  *
  */
-public class Code_08_Hanoi {
+public class Code08Hanoi {
 
     public static void hanoi(int n) {
 
