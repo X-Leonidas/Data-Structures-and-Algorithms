@@ -1,4 +1,4 @@
-package cn.xy.algorithm.kmp;
+package cn.xy.algorithm.str.kmp;
 
 /**
  * 给定一个字符串str1， 只能往str1的后面添加字符变成str2
@@ -14,7 +14,7 @@ public class Code_02_KMP_ShortestHaveTwice {
 			return str + str;
 		}
 		if (chas.length == 2) {
-			return chas[0] == chas[1] ? (str + String.valueOf(chas[0])) : (str + str);
+			return chas[0] == chas[1] ? (str + chas[0]) : (str + str);
 		}
 		int endNext = endNextLength(chas);
 		return str + str.substring(endNext);

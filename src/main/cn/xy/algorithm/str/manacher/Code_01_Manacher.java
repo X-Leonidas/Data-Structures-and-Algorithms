@@ -1,27 +1,26 @@
-package cn.xy.algorithm.manacher;
+package cn.xy.algorithm.str.manacher;
 
 /**
  * @author XiangYu
- * @create2021-03-21-18:45
- *  可以在时间**O(N)**的情况下求解一个字符串的最长回文子串长度的问题。
- *
- *
- * + 在每个字符串之间加入一个标志位，例如 11311 -> #1#1#3#1#1#
- * + 然后每个索引上的值向左右遍历对比。
- * + 拿到最大的长度， 长度/2  就是最长回文子串的长度
- *
- * 1. 在每个字符串之间加入一个标志位，例如 11311 -> #1#1#3#1#1#
- *
- * 2. `i`位置不再回文右边界里面，继续暴力求出在`i+1`的回文子串长度
- * 3. `i`位置在回文右边界内，根据回文中心`c`，做出i的对称点$i_2$
- *    1.  $i_2$的回文直径在当前`c`的回文半径中，例如 z k [ a b($i_2$) a t f(`c`) t a b(`i`) a ] k u
- *        + 此时`i`的回文半径和$i_2$一致
- *    2.  $i_2$的回文半径的索引超出了当前`c`的回文半径，例如a b [c d($i_2$) c b a t t(`c`) t a b c d(`i`) c] f
- *        + 此时`i`的回文半径为`i`到c的右边界的长度
- *    3.  $i_2$的回文半径的索引等于了当前`c`的回文半径，例如 t [a b c($i_2$) b a k(`o`) a b c(`i`) b a] k
- *        + 此时`i`的回文半径无法确认，要从c的右边界的下一个继续校验
- *
- *
+ * @date 2021-03-21-18:45
+ * 可以在时间**O(N)**的情况下求解一个字符串的最长回文子串长度的问题。
+ * 在每个字符串之间加入一个标志位，例如 11311 -> #1#1#3#1#1# , 确保回文串是奇数，对称位置只有虚轴没有实轴
+ * 对应关系:
+ * + 真实长度 = 回文半径 -1
+ * + 真实回文串终止位置 = 扩展回文串结尾下标/2
+ * <p>
+ * 回文半径数组p[i] 代表当前位置的最大半径
+ * 回文覆盖右边界r: 回文到不了的边界
+ * 会问中心c : 此时取得当前 r 的 最早的c位置
+ * <p>
+ * 四种情况：
+ * a，i没有被r包住，那么以i为中心直接扩展 i >= r
+ * b，i被r包住，对称点 2*c-i 的回文半径，在大回文区域以内，直接确定p[i] = p[2*c-i]
+ * <blockquote> 因为回文子串都处于整个大回文中，所以 i 和 以c对称的i` 必定相等
+ * c，i被r包住，对称点 2*c-i 的回文半径，在大回文区域以外，直接确定p[i] = r - i
+ * <blockquote>
+ * d，i被r包住，对称点 2*c-i 的回文半径，撞线大回文区域的边界，从r之外的位置进行扩展
+ * <blockquote>
  */
 public class Code_01_Manacher {
 
@@ -45,32 +44,31 @@ public class Code_01_Manacher {
         char[] charArr = manacherString(str);
         //回文半径数组
         int[] pArr = new int[charArr.length];
-        //索引
-        int index = -1;
+        // 此时取得当前 r 的 最早的位置
+        int c = 0;
         //回文右边界
-        int pR = -1;
-        //
+        int pR = 0;
+        // 当前的半径长度
+        int len;
         int max = Integer.MIN_VALUE;
+        for (int i = 0; i < charArr.length; i++) {
+            // i 在 回文右边界里面，先给一个至少的回文区域  没有的从本身1开始
+            len = pR > i ? Math.min(pArr[2 * c - i], pR - i) : 1;
 
-        for (int i = 0; i != charArr.length; i++) {
-            //2 * index - i   i`点
-            //Math.min(pArr[2 * index - i], pR - i)  起码不用验证的区域 (i到pr和i`的回文半径，谁小就是谁)
-            pArr[i] = pR > i ? Math.min(pArr[2 * index - i], pR - i) : 1;
-            //i + pArr[i] < charArr.length && i - pArr[i] > -1左右不越界
-            while (i + pArr[i] < charArr.length && i - pArr[i] > -1) {
-                if (charArr[i + pArr[i]] == charArr[i - pArr[i]]){
-                    pArr[i]++;
-                } else {
-                    break;
-                }
+            // 左右扩的行为
+            while (i + len < charArr.length && i - len >= 0 && charArr[i + len] == charArr[i - len]) {
+                len++;
             }
-            //更新回文右边界
-            if (i + pArr[i] > pR) {
-                pR = i + pArr[i];
-                index = i;
+            // 更新pR
+            // 以及当前最早到达pR的位置
+            if (i + len > pR) {
+                pR = i + len;
+                c = i;
             }
-            max = Math.max(max, pArr[i]);
+            max = Math.max(max, len);
+            pArr[i] = len;
         }
+
         return max - 1;
     }
 

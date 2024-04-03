@@ -1,4 +1,4 @@
-package cn.xy.algorithm.manacher;
+package cn.xy.algorithm.str.manacher;
 
 /**
  * 给定一个字符串str1，只能往str1的后面添加字符变成str2,要求str2整体都是回文串且最短
@@ -16,7 +16,7 @@ public class Code_02_Manacher_ShortestEnd {
 	}
 
 	public static String shortestEnd(String str) {
-		if (str == null || str.length() == 0) {
+		if (str == null || str.isEmpty()) {
 			return null;
 		}
 		char[] charArr = manacherString(str);
