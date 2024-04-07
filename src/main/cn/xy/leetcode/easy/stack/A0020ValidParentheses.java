@@ -1,4 +1,4 @@
-package cn.xy.leetcode.easy;
+package cn.xy.leetcode.easy.stack;
 
 import java.util.HashMap;
 import java.util.Map;

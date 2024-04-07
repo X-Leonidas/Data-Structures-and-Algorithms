@@ -2,32 +2,22 @@ package cn.xy.algorithm.matrix;
 
 /**
  * @author XiangYu
- * @create2021-02-25-21:48
- *
- *
+ * @date 2021-02-25-21:48
  * 顺时针打印矩阵
- *
  * 输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。
- *
- *  
- *
  * 示例 1：
- *
  * 输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
  * 输出：[1,2,3,6,9,8,7,4,5]
+ * <p>
  * 示例 2：
- *
- * 输入：matrix = [[1,2,3,4],
- *                 [5,6,7,8],
- *                [9,10,11,12]]
+ * 输入：matrix =[[1,2,3,4],
+ * [5,6,7,8],
+ * [9,10,11,12]]
  * 输出：[1,2,3,4,8,12,11,10,9,5,6,7]
- *  
- *
- * 限制：
- *
+ * <p>
+ * 限制
  * 0 <= matrix.length <= 100
- * 0 <= matrix[i].length <= 100
- *
+ * 0 <= matrix[i].length<= 100
  */
 public class A01PrintMatrixByClockwise {
 
@@ -35,7 +25,7 @@ public class A01PrintMatrixByClockwise {
      * 可以模拟打印矩阵的路径。初始位置是矩阵的左上角，初始方向是向右，当路径超出界限或者进入之前访问过的位置时，则顺时针旋转，进入下一个方向。
      * 判断路径是否进入之前访问过的位置需要使用一个与输入矩阵大小相同的辅助矩阵visited，其中的每个元素表示该位置是否被访问过。
      * 当一个元素被访问时，将 visited中的对应位置的元素设为已访问。
-     *
+     * <p>
      * 如何判断路径是否结束？由于矩阵中的每个元素都被访问一次，因此路径的长度即为矩阵中的元素数量，当路径的长度达到矩阵中的元素数量时即为完整路径，将该路径返回。
      *
      * @param matrix
@@ -80,6 +70,7 @@ public class A01PrintMatrixByClockwise {
 
     /**
      * 按层次模拟
+     *
      * @param matrix
      * @return
      */
@@ -129,10 +120,8 @@ public class A01PrintMatrixByClockwise {
 
     /**
      * 左神的写法
-     * @param matrix
-     * 用左顶点和右低点，两个点定义一个矩形，一次打印该矩形的元素
      *
-     *
+     * @param matrix 用左顶点和右低点，两个点定义一个矩形，一次打印该矩形的元素
      */
 
     public static void spiralOrderPrint(int[][] matrix) {
