@@ -1,4 +1,4 @@
-package cn.xy.algorithm.dp.o_dimensional_tutorial;
+package cn.xy.algorithm.dp.one_dimensional_tutorial;
 
 // 环绕字符串中唯一的子字符串
 // 定义字符串 base 为一个 "abcdefghijklmnopqrstuvwxyz" 无限环绕的字符串

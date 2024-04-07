@@ -1,4 +1,4 @@
-package cn.xy.algorithm.dp.o_dimensional_tutorial;
+package cn.xy.algorithm.dp.one_dimensional_tutorial;
 
 import java.util.Arrays;
 

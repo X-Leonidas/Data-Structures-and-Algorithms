@@ -1,4 +1,4 @@
-package cn.xy.algorithm.dp.o_dimensional_tutorial;
+package cn.xy.algorithm.dp.one_dimensional_tutorial;
 
 // 最长有效括号
 // 给你一个只包含 '(' 和 ')' 的字符串
