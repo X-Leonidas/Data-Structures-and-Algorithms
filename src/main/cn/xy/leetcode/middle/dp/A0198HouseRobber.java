@@ -5,6 +5,7 @@ import java.util.Arrays;
 /**
  * @author xiangyu
  * @date 2024-03-31 21:25
+ * 打家劫舍
  * <p>
  * 你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，
  * 影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。
@@ -78,6 +79,8 @@ public class A0198HouseRobber {
         for (int i = 2; i < length; i++) {
             // 决定当前这个偷不偷
             dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1]);
+            //如果有负数,要考虑只要它自己是否更合适
+//            dp[i] = Math.max(Math.max(dp[i - 2] + nums[i],nums[i]), dp[i - 1]);
         }
         return dp[length - 1];
     }

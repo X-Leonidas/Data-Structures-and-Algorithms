@@ -95,6 +95,7 @@ public class A0239SlidingWindowMaximum {
     public int[] maxSlidingWindow2(int[] nums, int k) {
         int n = nums.length;
         Deque<Integer> deque = new LinkedList<>();
+        // 构造K的单调队列
         for (int i = 0; i < k; ++i) {
             // deque.peekLast() 存在的话 num[i] 一定存在，
             // 所以num[i]大的话可以直接丢掉deque.peekLast(),小的话则需要加入队列中
