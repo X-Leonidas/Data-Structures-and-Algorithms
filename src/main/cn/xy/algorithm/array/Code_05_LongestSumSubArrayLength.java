@@ -28,7 +28,7 @@ public class Code_05_LongestSumSubArrayLength {
             return 0;
         }
 
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        HashMap<Integer, Integer> map = new HashMap<>();
         //塞入0,-1是为了确认在0是在-1上最早出现的，区别sum-aim也有可能得到0的情况。
         map.put(0, -1);
         int len = 0;

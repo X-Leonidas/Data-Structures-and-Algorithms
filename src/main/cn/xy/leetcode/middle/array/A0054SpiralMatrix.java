@@ -72,8 +72,9 @@ public class A0054SpiralMatrix {
     }
 
     public List<Integer> spiralOrder2(int[][] matrix) {
-        if (matrix.length == 0)
-            return new ArrayList<Integer>();
+        if (matrix.length == 0) {
+            return new ArrayList<>();
+        }
         //
         int l = 0;
         int r = matrix[0].length - 1;

@@ -32,9 +32,70 @@ package cn.xy.leetcode.middle.matrix;
  * 本题中，我们使用二维数组来表示面板。原则上，面板是无限的，但当活细胞侵占了面板边界时会造成问题。你将如何解决这些问题？
  */
 public class A0289GameOfLife {
+    /**
+     * 使用数组记录
+     *
+     * @param board
+     */
     public void gameOfLife(int[][] board) {
+        int[][] flag = new int[board.length][board[0].length];
 
-        // TODO:
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                flag[i][j] = judge(board, i, j);
+            }
+        }
+
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                board[i][j] = flag[i][j];
+            }
+        }
 
     }
+
+    private int judge(int[][] board, int i, int j) {
+        int live = 0;
+        if (i - 1 >= 0) {
+            live += board[i - 1][j];
+
+            if (j - 1 >= 0) {
+                live += board[i - 1][j - 1];
+            }
+
+            if (j + 1 < board[i].length) {
+                live += board[i - 1][j + 1];
+            }
+        }
+
+        if (i + 1 < board.length) {
+            live += board[i + 1][j];
+
+            if (j - 1 >= 0) {
+                live += board[i + 1][j - 1];
+            }
+
+            if (j + 1 < board[i].length) {
+                live += board[i + 1][j + 1];
+            }
+        }
+        if (j - 1 >= 0) {
+            live += board[i][j - 1];
+        }
+
+        if (j + 1 < board[i].length) {
+            live += board[i][j + 1];
+        }
+
+
+        if (live < 2 || live > 3) {
+            return 0;
+        } else if (live == 2) {
+            return board[i][j];
+        } else {
+            return 1;
+        }
+    }
+
+    // 原地交换的话，用-1和2代表本次 复活或者死亡的细胞，判断是，多加两次判断
 }
