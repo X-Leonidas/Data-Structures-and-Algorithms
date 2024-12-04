@@ -92,8 +92,9 @@ public class A0049GroupAnagrams {
 
     /**
      * 自己的方法，官方的优雅写法
-     *执行用时：7 ms, 在所有 Java 提交中击败了95.84%的用户
+     * 执行用时：7 ms, 在所有 Java 提交中击败了95.84%的用户
      * 内存消耗：41.6 MB, 在所有 Java 提交中击败了57.71%的用户
+     *
      * @param strs
      * @return
      */
@@ -109,7 +110,7 @@ public class A0049GroupAnagrams {
 //             list.add(str);
 //             map.put(key, list);
 
-            if(!map.containsKey(key)){
+            if (!map.containsKey(key)) {
                 map.put(key, new ArrayList<>());
             }
             map.get(key).add(str);
@@ -119,6 +120,7 @@ public class A0049GroupAnagrams {
 
     /**
      * 官方解法2，使用出现的字母和出现的次数作为key
+     *
      * @param strs
      * @return
      */
@@ -145,9 +147,6 @@ public class A0049GroupAnagrams {
         }
         return new ArrayList<List<String>>(map.values());
     }
-
-
-
 }
 
 
