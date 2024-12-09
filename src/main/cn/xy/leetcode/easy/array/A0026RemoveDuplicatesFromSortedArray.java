@@ -17,19 +17,26 @@ package cn.xy.leetcode.easy.array;
  * nums 已按 非严格递增 排列
  */
 public class A0026RemoveDuplicatesFromSortedArray {
+
+    public static void main(String[] args) {
+        int[] arg = new int[]{0,0,1,1,1,2,2,3,3,4};
+        new A0026RemoveDuplicatesFromSortedArray().removeDuplicates(arg);
+        System.out.println(arg);
+    }
+
     public int removeDuplicates(int[] nums) {
         int n = nums.length;
         if (n == 0) {
             return 0;
         }
-        int fast = 1, slow = 1;
+        int fast = 1, slow = 0;
         while (fast < n) {
-            if (nums[fast] != nums[fast - 1]) {
-                nums[slow] = nums[fast];
-                ++slow;
+            if (nums[slow] != nums[fast]) {
+                nums[slow+1] = nums[fast];
+                slow++;
             }
             ++fast;
         }
-        return slow;
+        return slow+1;
     }
 }
