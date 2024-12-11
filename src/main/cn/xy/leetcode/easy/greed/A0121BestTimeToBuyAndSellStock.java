@@ -21,14 +21,35 @@ package cn.xy.leetcode.easy.greed;
  * 提示
  * 1 <= prices.length <= 105
  * 0 <= prices[i] <= 104
+ * <p>
+ * 升级提醒：122
  */
 public class A0121BestTimeToBuyAndSellStock {
 
     public static void main(String[] args) {
-
         A0121BestTimeToBuyAndSellStock a0121BestTimeToBuyAndSellStock = new A0121BestTimeToBuyAndSellStock();
-        a0121BestTimeToBuyAndSellStock.maxProfit(new int[]{7, 1, 5, 3, 6, 4});
+        a0121BestTimeToBuyAndSellStock.maxProfit1(new int[]{7, 1, 5, 3, 6, 4});
     }
+
+    public int maxProfit1(int[] prices) {
+        int result = 0;
+        int n = prices.length;
+        int min = prices[0];
+
+        for (int i = 1; i < n; i++) {
+            if (min > prices[i - 1]) {
+                min =  prices[i - 1];
+            }
+            int curValue = prices[i] - min;
+            if (curValue > result) {
+                result = curValue;
+            }
+
+        }
+
+        return result;
+    }
+
 
     public int maxProfit(int[] prices) {
         int ans = 0;
@@ -45,5 +66,55 @@ public class A0121BestTimeToBuyAndSellStock {
         }
 
         return ans;
+    }
+
+    /**
+     * 只能买卖一次，改进版
+     * 执行用时：1 ms, 在所有 Java 提交中击败了98.55%的用户
+     * 内存消耗：38 MB, 在所有 Java 提交中击败了93.40%
+     * 的用户
+     *
+     * @param prices
+     * @return
+     */
+    public int maxProfit4(int[] prices) {
+        if (prices == null || prices.length < 2) {
+            return 0;
+        }
+        // 最高收益
+        int mp = 0;
+        // 最低价
+        int min = prices[0];
+        for (int i = 1; i < prices.length; i++) {
+            if (prices[i] < min) {
+                // 设定相对最低价
+                min = prices[i];
+            } else if (mp < (prices[i] - min)) {
+                // 设定最高盈利
+                mp = prices[i] - min;
+            }
+        }
+        return mp;
+    }
+
+    /**
+     * 官方题解
+     * @param prices
+     * @return
+     */
+    public int maxProfit3(int[] prices) {
+        int result = 0;
+        int n = prices.length;
+        int min = prices[0];
+
+        for (int i = 0; i < n; i++) {
+            if (min > prices[i - 1]) {
+                min = prices[i - 1];
+            }else if (prices[i] - min > result) {
+                result = prices[i] - min;
+            }
+        }
+
+        return result;
     }
 }
