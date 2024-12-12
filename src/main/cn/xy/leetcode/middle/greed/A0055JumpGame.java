@@ -1,6 +1,5 @@
 package cn.xy.leetcode.middle.greed;
 
-import java.util.Map;
 
 /**
  * 给定一个非负整数数组nums ，你最初位于数组的 第一个下标 。
