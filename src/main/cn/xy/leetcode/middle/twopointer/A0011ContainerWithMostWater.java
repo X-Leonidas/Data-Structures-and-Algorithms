@@ -1,4 +1,4 @@
-package cn.xy.leetcode.middle.doublepointer;
+package cn.xy.leetcode.middle.twopointer;
 
 
 /**
@@ -40,21 +40,17 @@ public class A0011ContainerWithMostWater {
 
     /**
      * 使用双指针，每次移动的指针的条件判断为：移动当前数值较小的指针，因为如果移动大的，不可能出现更大的面积
+     *
      * @param height
      * @return
      */
     public static int maxArea(int[] height) {
-        if (height == null || height.length == 1) {
-            return 0;
-        }
-
-        int length = height.length;
         int max = -1;
         int start = 0;
-        int end = length - 1;
+        int end = height.length - 1;
 
         while (start < end) {
-            max = Math.max(max,Math.min(height[start], height[end]) * (end - start));
+            max = Math.max(max, Math.min(height[start], height[end]) * (end - start));
             if (height[end] > height[start]) {
                 start++;
             } else {
