@@ -7,39 +7,32 @@ import java.util.Set;
 
 /**
  * @author XiangYu
- * @create2021-04-24-18:12 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
- * <p>
- *  
- * <p>
- * 示例 1:
- * <p>
+ * 给定一个字符串，请你找出其中不含有重复字符的最长子串的长度。
+ * 示例1:
  * 输入: s = "abcabcbb"
  * 输出: 3
  * 解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
- * 示例 2:
  * <p>
+ * 示例 2:
  * 输入: s = "bbbbb"
  * 输出: 1
  * 解释: 因为无重复字符的最长子串是 "b"，所以其长度为 1。
- * 示例 3:
  * <p>
+ * 示例 3:
  * 输入: s = "pwwkew"
  * 输出: 3
- * 解释: 因为无重复字符的最长子串是 "wke"，所以其长度为 3。
- *      请注意，你的答案必须是 子串 的长度，"pwke" 是一个子序列，不是子串。
- * 示例 4:
+ * 解释: 因为无重复字符的最长子串是"wke"，所以其长度为 3。
+ * 请注意，你的答案必须是 子串 的长度，"pwke"是一个子序列，不是子串。
  * <p>
+ * 示例 4:
  * 输入: s = ""
  * 输出: 0
- *  
  * <p>
  * 提示：
- * <p>
  * 0 <= s.length <= 5 * 104
- * s 由英文字母、数字、符号和空格组成
+ * s由英文字母、数字、符号和空格组成
  */
 public class A0003LongestSubstringWithoutRepeatingCharacters {
-
 
     public static int lengthOfLongestSubstring(String s) {
         Set<Character> set = new HashSet<>();
@@ -65,7 +58,7 @@ public class A0003LongestSubstringWithoutRepeatingCharacters {
 
 
     public static void main(String[] args) {
-        System.out.println(lengthOfLongestSubstring2("abba"));
+        System.out.println(lengthOfLongestSubstring5("abba"));
     }
 
     public static int lengthOfLongestSubstring2(String s) {
@@ -107,5 +100,26 @@ public class A0003LongestSubstringWithoutRepeatingCharacters {
         }
 
         return res;
+    }
+
+
+    public static int lengthOfLongestSubstring5(String s) {
+        if (s.isEmpty()) {
+            return 0;
+        }
+        int ans = 0;
+        char[] charArray = s.toCharArray();
+        Map<Character, Integer> map = new HashMap<>(64);
+        int start = 0;
+        for (int cur = 0; cur < charArray.length; cur++) {
+            if (map.containsKey(charArray[cur])) {
+                // 解决abba的问题，start只能越来越大，不能越来越小
+                start = Math.max(map.get(charArray[cur]) + 1, start);
+            }
+            ans = Math.max(cur - start + 1, ans);
+            map.put(charArray[cur], cur);
+        }
+
+        return ans;
     }
 }
