@@ -38,6 +38,7 @@ public class A0289GameOfLife {
      * @param board
      */
     public void gameOfLife(int[][] board) {
+        // 辅助数组
         int[][] flag = new int[board.length][board[0].length];
 
         for (int i = 0; i < board.length; i++) {
