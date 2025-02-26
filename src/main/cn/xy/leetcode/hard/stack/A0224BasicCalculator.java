@@ -1,40 +1,33 @@
-package cn.xy.leetcode.hard;
+package cn.xy.leetcode.hard.stack;
 
 import java.util.Deque;
 import java.util.LinkedList;
 
 /**
  * @author XiangYu
- * @create2021-05-04-18:25
- *  给你一个字符串表达式 s ，请你实现一个基本计算器来计算并返回它的值。
- *
- *  
- *
+ * @date 2025年2月27日00点01分
+ * <p>
+ * 给你一个字符串表达式 s ，请你实现一个基本计算器来计算并返回它的值。
  * 示例 1：
- *
  * 输入：s = "1 + 1"
  * 输出：2
+ * <p>
  * 示例 2：
- *
  * 输入：s = " 2-1 + 2 "
  * 输出：3
+ * <p>
  * 示例 3：
- *
  * 输入：s = "(1+(4+5+2)-3)+(6+8)"
  * 输出：23
- *  
- *
+ * <p>
  * 提示：
- *
  * 1 <= s.length <= 3 * 105
  * s 由数字、'+'、'-'、'('、')'、和 ' ' 组成
  * s 表示一个有效的表达式
- *
- *
  */
 public class A0224BasicCalculator {
     public static int calculate(String s) {
-        s= s.replace(" ","");
+        s = s.replace(" ", "");
 
         char[] chars = s.toCharArray();
         LinkedList<String> stack1 = new LinkedList<>();
@@ -43,50 +36,50 @@ public class A0224BasicCalculator {
         StringBuilder sb = new StringBuilder();
         for (char aChar : chars) {
             //非数字
-            if(aChar < 48 || aChar > 57){
-                if(sb.length() > 0){
+            if (aChar < 48 || aChar > 57) {
+                if (sb.length() > 0) {
                     stack1.offer(sb.toString());
                 }
-                sb.delete(0,sb.length());
-                if(aChar == ')'){
-                    while(!stack1.peekLast().equals("(")) {
+                sb.delete(0, sb.length());
+                if (aChar == ')') {
+                    while (!stack1.peekLast().equals("(")) {
                         stack2.offer(stack1.pollLast());
                     }
                     //去掉左括号
-                   stack1.pollLast();
+                    stack1.pollLast();
                     int temp = 0;
-                    while(!stack2.isEmpty()){
-                       String  ts = stack2.pollLast();
-                       if(ts.equals("+")){
+                    while (!stack2.isEmpty()) {
+                        String ts = stack2.pollLast();
+                        if (ts.equals("+")) {
                             temp = temp + Integer.parseInt(stack2.pollLast());
-                       }else  if(ts.equals("-")){
+                        } else if (ts.equals("-")) {
                             temp = temp - Integer.parseInt(stack2.pollLast());
-                       }else {
-                           temp = Integer.parseInt(ts);
-                       }
+                        } else {
+                            temp = Integer.parseInt(ts);
+                        }
                     }
 
                     stack1.offer(String.valueOf(temp));
-                }else{
+                } else {
                     stack1.offer(String.valueOf(aChar));
                 }
 
-            }else{
+            } else {
                 sb.append(aChar);
             }
         }
-        if(sb.length() > 0){
+        if (sb.length() > 0) {
             stack1.offer(sb.toString());
         }
 
 
-        while(!stack1.isEmpty()){
-            String  ts = stack1.pollFirst();
-            if(ts.equals("+")){
+        while (!stack1.isEmpty()) {
+            String ts = stack1.pollFirst();
+            if (ts.equals("+")) {
                 res = res + Integer.parseInt(stack1.pollFirst());
-            }else  if(ts.equals("-")){
+            } else if (ts.equals("-")) {
                 res = res - Integer.parseInt(stack1.pollFirst());
-            }else {
+            } else {
                 res = Integer.parseInt(ts);
             }
         }
@@ -98,6 +91,7 @@ public class A0224BasicCalculator {
 
     /**
      * 官方题解
+     *
      * @param s
      * @return
      */
@@ -137,8 +131,6 @@ public class A0224BasicCalculator {
         }
         return ret;
     }
-
-
 
     public static void main(String[] args) {
 
