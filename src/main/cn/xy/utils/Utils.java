@@ -1,12 +1,43 @@
 package cn.xy.utils;
 
 import java.lang.reflect.Method;
+import java.util.List;
 
 /**
  * @author XiangYu
  * @create2020-11-04-0:50
  */
 public class Utils {
+
+    /**
+     * 传入数组 生成链表
+     *
+     * @param list
+     * @return
+     */
+    public static ListNode convertNode(List<Integer> list) {
+        ListNode head = new ListNode(-1);
+        ListNode preNode = head;
+        for (Integer i : list) {
+            ListNode node = new ListNode(i);
+            preNode.next = node;
+            preNode = node;
+        }
+        return head.next;
+    }
+
+    /**
+     * 打印链表
+     * @param node
+     */
+    public static void printNode(ListNode node) {
+        System.out.print("head->");
+        while (node != null) {
+            System.out.print(node.val + "-> ");
+            node = node.next;
+        }
+        System.out.print("end");
+    }
 
 
     /**
@@ -24,7 +55,7 @@ public class Utils {
         for (int i = 0; i < arraySize; i++) {
             array[i] = (int) ((rangeR - rangeL + 1) * Math.random() + rangeL);
         }
-        return  array;
+        return array;
     }
 
 
@@ -83,7 +114,6 @@ public class Utils {
     }
 
 
-
     public static int[] generateRandomArray(int maxSize, int maxValue) {
         int[] arr = new int[(int) ((maxSize + 1) * Math.random())];
         for (int i = 0; i < arr.length; i++) {
@@ -119,7 +149,7 @@ public class Utils {
 
     //判断数组是否有序
     public static boolean isSorted(Comparable[] arr) {
-        for (int i = 0; i < arr.length -1; i++) {
+        for (int i = 0; i < arr.length - 1; i++) {
             if (arr[i].compareTo(arr[i + 1]) > 0) {
                 return false;
             }
@@ -162,6 +192,7 @@ public class Utils {
             e.printStackTrace();
         }
     }
+
     public static boolean isEqual(int[] arr1, int[] arr2) {
         if ((arr1 == null && arr2 != null) || (arr1 != null && arr2 == null)) {
             return false;
