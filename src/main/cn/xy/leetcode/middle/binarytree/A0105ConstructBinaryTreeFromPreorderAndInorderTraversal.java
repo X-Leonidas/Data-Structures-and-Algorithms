@@ -10,7 +10,7 @@ import java.util.HashMap;
  * <p>
  * 给定两个整数数组 preorder 和 inorder ，
  * 其中 preorder 是二叉树的先序遍历，
- *     inorder 是同一棵树的中序遍历，
+ * inorder 是同一棵树的中序遍历，
  * 请构造二叉树并返回其根节点。
  */
 public class A0105ConstructBinaryTreeFromPreorderAndInorderTraversal {
@@ -49,27 +49,73 @@ public class A0105ConstructBinaryTreeFromPreorderAndInorderTraversal {
 
     // ----------------- 针对不重复的值，使用 map，减少查找时间
 
-    HashMap<Integer,Integer> map = new HashMap<>();
+    HashMap<Integer, Integer> map = new HashMap<>();
+
     public TreeNode buildTree2(int[] preorder, int[] inorder) {
         for (int i = 0; i < inorder.length; i++) {
             map.put(inorder[i], i);
         }
-        return buildHelper2(preorder, 0, preorder.length, inorder, 0, inorder.length);
+        return buildHelper2(preorder, 0, preorder.length, 0);
     }
 
-    private TreeNode buildHelper2(int[] preorder, int pStart, int pEnd, int[] inorder, int iStart, int iEnd) {
+    private TreeNode buildHelper2(int[] preorder, int pStart, int pEnd, int iStart) {
         if (pStart == pEnd) {
             return null;
         }
+        // 当前节点
         TreeNode root = new TreeNode(preorder[pStart]);
-        int iRootIndex = map.get(root.val);
+
+        // 当前节点在中序遍历中的位置
+        int inOrderRootIndex = map.get(root.val);
 
         // 左树还有多少个元素
-        int leftNum = iRootIndex - iStart;
+        int leftNum = inOrderRootIndex - iStart;
 
-        root.left = buildHelper2(preorder, pStart + 1, pStart + leftNum + 1, inorder, iStart, iRootIndex);
+        root.left = buildHelper2(preorder, pStart + 1, pStart + leftNum + 1, iStart);
         //pStart + leftNum + 1 跳过左树的元素
-        root.right = buildHelper2(preorder, pStart + leftNum + 1, pEnd, inorder, iRootIndex + 1, iEnd);
+        root.right = buildHelper2(preorder, pStart + leftNum + 1, pEnd, inOrderRootIndex + 1);
+        return root;
+    }
+
+
+    public TreeNode buildTree3(int[] preorder, int[] inorder) {
+        for (int i = 0; i < inorder.length; i++) {
+            map.put(inorder[i], i);
+        }
+        return buildHelper3(preorder, 0, preorder.length - 1, 0, inorder.length - 1);
+    }
+
+    /**
+     * @param preorder 前序遍历数组
+     * @param pStart   当前要构造的子树的前序遍历的开始下标
+     * @param pEnd     当前要构造的子树的前序遍历的结束下标
+     * @param iStart   当前要构造的子树的中序序遍历的开始下标
+     * @param iEnd     当前要构造的子树的中序遍历的结束下标
+     * @return
+     */
+    private TreeNode buildHelper3(int[] preorder, int pStart, int pEnd, int iStart, int iEnd) {
+        if (pStart > pEnd || iStart > iEnd) {
+            return null;
+        }
+        // 当前节点
+        TreeNode root = new TreeNode(preorder[pStart]);
+        // 当前节点在中序遍历中的位置
+        int iRootIndex = map.get(root.val);
+
+        // 前序遍历的左子树的开始节点为 pStart + 1
+        // 前序遍历的左子树的结束节点为 pStart + 从中序遍历拿到的作左子树长度 (pIndex-1 - iStart + 1) 其中+1的原因是算的是长度 所以要+1
+        // 故左子树长度为 pIndex-iStart, 结束下标就位 pStart + pIndex - iStart
+
+        // 中序便利的左子树的开始节点为 iStart
+        // 中序便利的左子树的结束节点为 pIndex -1
+        root.left = buildHelper3(preorder, pStart + 1, pStart + iRootIndex - iStart, iStart, iRootIndex - 1);
+
+        // 前序遍历的右子树的开始节点为  pStart + pIndex - iStart + 1
+        // 前序遍历的右子树的结束节点为  pend
+
+        // 中序便利的右子树的开始节点为  pIndex+1
+        // 中序便利的右子树的结束节点为  iEnd
+        root.right = buildHelper3(preorder, pStart + iRootIndex - iStart, pEnd, iRootIndex + 1, iEnd);
         return root;
     }
 }
