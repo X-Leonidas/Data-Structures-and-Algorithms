@@ -1,16 +1,23 @@
 package cn.xy.utils;
 
-public class TreeNode {
-    public TreeNode left;
-    public TreeNode right;
+/**
+ * @author xiangyu
+ */
+public class Node {
+    public Node left;
+
+    public Node right;
+
     public int val;
+
+    public Node next;
 
     /**
      * 先序遍历二叉树
      *
      * @param rootTreeNode
      */
-    public static void preTraverseBTree(TreeNode rootTreeNode) {
+    public static void preTraverseBTree(Node rootTreeNode) {
         if (rootTreeNode != null) {
             System.out.println(rootTreeNode.getVal());
             preTraverseBTree(rootTreeNode.getLeft());
@@ -24,7 +31,7 @@ public class TreeNode {
      *
      * @param rootTreeNode
      */
-    public static void inTraverseBTree(TreeNode rootTreeNode) {
+    public static void inTraverseBTree(Node rootTreeNode) {
         if (rootTreeNode != null) {
             inTraverseBTree(rootTreeNode.getLeft());
             System.out.println(rootTreeNode.getVal());
@@ -35,7 +42,7 @@ public class TreeNode {
     /**
      * 后续遍历二叉树
      */
-    public static void endTraverseBTree(TreeNode rootTreeNode) {
+    public static void endTraverseBTree(Node rootTreeNode) {
         if (rootTreeNode != null) {
             inTraverseBTree(rootTreeNode.getLeft());
             inTraverseBTree(rootTreeNode.getRight());
@@ -47,7 +54,7 @@ public class TreeNode {
      * 查询树的深度
      */
 
-    public static int getHeight(TreeNode treeNode) {
+    public static int getHeight(Node treeNode) {
         if (treeNode == null) {
             return 0;
         } else {
@@ -68,7 +75,7 @@ public class TreeNode {
     /**
      * 查询树的最大值
      */
-    public static int getMax(TreeNode rootTreeNode) {
+    public static int getMax(Node rootTreeNode) {
         if (rootTreeNode == null) {
             return -1;
         } else {
@@ -91,7 +98,7 @@ public class TreeNode {
     }
 
 
-    public TreeNode(int value) {
+    public Node(int value) {
         this.val = value;
     }
 
@@ -103,20 +110,26 @@ public class TreeNode {
         this.val = val;
     }
 
-    public TreeNode getLeft() {
+    public Node getLeft() {
         return left;
     }
 
-    public TreeNode getRight() {
+    public Node getRight() {
         return right;
     }
 
-    public void setLeft(TreeNode left) {
+    public void setLeft(Node left) {
         this.left = left;
     }
 
-    public void setRight(TreeNode right) {
+    public void setRight(Node right) {
         this.right = right;
     }
 
+    public Node getNext() {
+        return next;
+    }
+    public void setNext(Node next) {
+        this.next = next;
+    }
 }

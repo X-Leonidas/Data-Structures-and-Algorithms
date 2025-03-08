@@ -103,8 +103,8 @@ public class A0105ConstructBinaryTreeFromPreorderAndInorderTraversal {
         int iRootIndex = map.get(root.val);
 
         // 前序遍历的左子树的开始节点为 pStart + 1
-        // 前序遍历的左子树的结束节点为 pStart + 从中序遍历拿到的作左子树长度 (pIndex-1 - iStart + 1) 其中+1的原因是算的是长度 所以要+1
-        // 故左子树长度为 pIndex-iStart, 结束下标就位 pStart + pIndex - iStart
+        // 前序遍历的左子树的结束节点为 开始节点 + 从中序遍历得到的左子树长度 可得 pStart+1 + (iRootIndex - 1 - iStart)
+        // 故结束下标为 pStart + pIndex - iStart
 
         // 中序便利的左子树的开始节点为 iStart
         // 中序便利的左子树的结束节点为 pIndex -1
@@ -115,7 +115,7 @@ public class A0105ConstructBinaryTreeFromPreorderAndInorderTraversal {
 
         // 中序便利的右子树的开始节点为  pIndex+1
         // 中序便利的右子树的结束节点为  iEnd
-        root.right = buildHelper3(preorder, pStart + iRootIndex - iStart, pEnd, iRootIndex + 1, iEnd);
+        root.right = buildHelper3(preorder, pStart + iRootIndex - iStart + 1, pEnd, iRootIndex + 1, iEnd);
         return root;
     }
 }

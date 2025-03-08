@@ -1,11 +1,9 @@
 package cn.xy.leetcode.middle.binarytree;
 
 import cn.xy.utils.TreeNode;
+import cn.xy.utils.Utils;
 
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * @author xiangyu
@@ -28,6 +26,15 @@ import java.util.Stack;
  * 输出：[0]
  */
 public class A0114FlattenBinaryTreeToLinkedList {
+
+
+
+    public static void main(String[] args) {
+        TreeNode treeNode = Utils.buildTreeFromDFS(Arrays.asList(1, 2, 5, 3, 4, null, 6));
+        new A0114FlattenBinaryTreeToLinkedList().flatten3(treeNode);
+    }
+
+
     public void flatten(TreeNode root) {
         if (root == null) {
             return;
@@ -79,4 +86,38 @@ public class A0114FlattenBinaryTreeToLinkedList {
             prev = curr;
         }
     }
+
+    /**
+     * 使用常数空间的算法
+     * @param root
+     */
+    public void flatten3(TreeNode root) {
+        if(root == null){
+            return;
+        }
+        adjustNode(root);
+    }
+
+    private TreeNode  adjustNode(TreeNode root){
+        if(root == null){
+            return null;
+        }
+        TreeNode left =  adjustNode(root.left);
+        TreeNode right = adjustNode(root.right);
+
+        if(left != null){
+            left.right = root.right;
+            root.right = root.left;
+            root.left = null;
+        }
+
+        if(right != null){
+            return right;
+        }else if (left != null){
+            return left;
+        }else{
+            return root;
+        }
+    }
+
 }

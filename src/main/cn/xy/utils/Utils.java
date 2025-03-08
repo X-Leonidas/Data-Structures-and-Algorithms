@@ -1,6 +1,8 @@
 package cn.xy.utils;
 
 import java.lang.reflect.Method;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.List;
 
 /**
@@ -8,6 +10,35 @@ import java.util.List;
  * @create2020-11-04-0:50
  */
 public class Utils {
+
+    /**
+     *   根据DFS遍历输出的数组转换为二叉树
+     */
+    public static TreeNode buildTreeFromDFS(List<Integer> list) {
+        if (list == null || list.isEmpty()) {
+            return null;
+        }
+
+        TreeNode root = new TreeNode(list.get(0));
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        stack.addLast(root);
+
+        for (int i = 1; i < list.size(); i++) {
+            TreeNode curNode = stack.pollFirst();
+            if (list.get(i) != null) {
+                curNode.left = new TreeNode(list.get(i));
+                stack.addLast(curNode.left);
+            }
+            i++;
+            if (i < list.size() && list.get(i) != null) {
+                curNode.right = new TreeNode(list.get(i));
+                stack.addLast(curNode.right);
+            }
+        }
+        return root;
+    }
+
+
 
     /**
      * 传入数组 生成链表
@@ -174,7 +205,7 @@ public class Utils {
             //通过sortClassName获得排序函数的Class对象
             Class sortClass = Class.forName(sortClassName);
             // 通过排序函数的Class对象获得排序方法
-            Method sort = sortClass.getMethod(sortname, new Class[]{Comparable[].class});
+            Method sort = sortClass.getMethod(sortname, Comparable[].class);
             // 排序参数只有一个，是可比较数组arr
             Object[] params = new Object[]{arr};
 
