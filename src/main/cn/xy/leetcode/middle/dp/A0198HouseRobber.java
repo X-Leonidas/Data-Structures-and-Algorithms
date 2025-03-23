@@ -84,4 +84,32 @@ public class A0198HouseRobber {
         }
         return dp[length - 1];
     }
+
+    /**
+     * 空间优化
+     * @param nums
+     * @return
+     */
+    public int rob3(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        int length = nums.length;
+        if (length == 1) {
+            return nums[0];
+        }
+
+        int dp1  = nums[0];
+        int dp2 = Math.max(nums[0], nums[1]);
+        for (int i = 2; i < length; i++) {
+            // 决定当前这个偷不偷
+            int temp = Math.max(dp1 + nums[i], dp2);
+            dp1 = dp2;
+            dp2 = temp;
+        }
+        return dp2;
+    }
+
+
+
 }
