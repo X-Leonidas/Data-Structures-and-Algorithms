@@ -26,7 +26,9 @@ public class A00279PerfectSquares {
     }
 
     public static int numSquares(int n) {
+        // dp 数组
         int[] f = new int[n + 1];
+        // 穷举 当前数的排列集合， 使用了 dp 来加速
         for (int i = 1; i <= n; i++) {
             int minn = Integer.MAX_VALUE;
             for (int j = 1; j * j <= i; j++) {

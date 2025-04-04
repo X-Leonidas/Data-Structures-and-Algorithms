@@ -31,7 +31,7 @@ package cn.xy.leetcode.middle.dp;
 public class A0300LongestIncreasingSubsequence {
 
     public static void main(String[] args) {
-        int[] ints = {1,3,5,4,7};
+        int[] ints = {1, 3, 5, 4, 7};
         int l = findNumberOfLIS2(ints);
     }
 
@@ -40,12 +40,15 @@ public class A0300LongestIncreasingSubsequence {
         if (nums.length == 0) {
             return 0;
         }
+        // dp 代表当前位置的最长递增子序列的长度
         int[] dp = new int[nums.length];
         dp[0] = 1;
         int maxans = 1;
         for (int i = 1; i < nums.length; i++) {
+            // 默认为1
             dp[i] = 1;
             for (int j = 0; j < i; j++) {
+                // 代表 i可以作为j的递增子序列的下一个数，比较是否为最大的
                 if (nums[i] > nums[j]) {
                     dp[i] = Math.max(dp[i], dp[j] + 1);
                 }
@@ -69,7 +72,7 @@ public class A0300LongestIncreasingSubsequence {
      * 输入: [2,2,2,2,2]
      * 输出: 5
      * 解释: 最长递增子序列的长度是1，并且存在5个子序列的长度为1，因此输出5。
-     * 注意: 给定的数组长度不超过 2000 并且结果一定是32位有符号整数。
+     * 注意:给定的数组长度不超过 2000 并且结果一定是32位有符号整数。
      *
      * @param nums
      * @return
@@ -90,25 +93,25 @@ public class A0300LongestIncreasingSubsequence {
                     dp[i] = Math.max(dp[j] + 1, dp[i]);
                 }
             }
-            if(maxans < dp[i]){
+            if (maxans < dp[i]) {
                 maxans = dp[i];
-                maxansIndex  = i;
+                maxansIndex = i;
             }
         }
 
 
         for (int i = 0; i < dp.length; i++) {
-            if(maxans == dp[i]+1 && nums[maxansIndex] > nums[i]){
+            if (maxans == dp[i] + 1 && nums[maxansIndex] > nums[i]) {
                 sum++;
-            }else if(maxans == dp[i]){
+            } else if (maxans == dp[i]) {
                 sum2++;
             }
         }
 
 
-        if(sum == 0){
-            return  sum2;
-        }else{
+        if (sum == 0) {
+            return sum2;
+        } else {
             return sum * sum2;
         }
 

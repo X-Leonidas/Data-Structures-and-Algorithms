@@ -1,4 +1,4 @@
-package cn.xy.leetcode.middle.array;
+package cn.xy.leetcode.middle.dp;
 
 import java.util.*;
 
@@ -42,6 +42,7 @@ public class A0139WordBreak {
         boolean[] dp = new boolean[s.length() + 1];
         dp[0] = true;
         for (int i = 1; i <= s.length(); i++) {
+            // 从0到j 和 从 j 到 i 是否可以被拆分，如果都可以则说明 从o到i可以被拆分
             for (int j = 0; j < i; j++) {
                 if (dp[j] && wordDictSet.contains(s.substring(j, i))) {
                     dp[i] = true;
