@@ -1,61 +1,91 @@
 package cn.xy.leetcode.middle.array;
 
 /**
- * 注意到下一个排列总是比当前排列要大，除非该排列已经是最大的排列。我们希望找到一种方法，能够找到一个大于当前序列的新序列，且变大的幅度尽可能小。具体地：
- *
- * 我们需要将一个左边的「较小数」与一个右边的「较大数」交换，以能够让当前排列变大，从而得到下一个排列。
- *
- * 同时我们要让这个「较小数」尽量靠右，而「较大数」尽可能小。当交换完成后，「较大数」右边的数需要按照升序重新排列。这样可以在保证新排列大于原来排列的情况下，使变大的幅度尽可能小。
- *
- * 以排列 [4,5,2,6,3,1][4,5,2,6,3,1] 为例：
- *
- * 我们能找到的符合条件的一对「较小数」与「较大数」的组合为 22 与 33，满足「较小数」尽量靠右，而「较大数」尽可能小。
- *
- * 当我们完成交换后排列变为 [4,5,3,6,2,1][4,5,3,6,2,1]，此时我们可以重排「较小数」右边的序列，序列变为 [4,5,3,1,2,6][4,5,3,1,2,6]。
+ * [31] 下一个排列
+ * https://leetcode.cn/problems/next-permutation/description/
+ * 整数数组的一个 排列 就是将其所有成员以序列或线性顺序排列。
+ * 例如，arr = [1,2,3] ，以下这些都可以视作 arr 的排列：[1,2,3]、[1,3,2]、[3,1,2]、[2,3,1] 。
+ * <p>
+ * 整数数组的 下一个排列 是指其整数的下一个字典序更大的排列。更正式地，如果数组的所有排列根据其字典顺序从小到大排列在一个容器中，那么数组的 下一个排列
+ * 就是在这个有序容器中排在它后面的那个排列。如果不存在下一个更大的排列，那么这个数组必须重排为字典序最小的排列（即，其元素按升序排列）。
+ * <p>
+ * 例如，arr = [1,2,3] 的下一个排列是 [1,3,2] 。
+ * 类似地，arr = [2,3,1] 的下一个排列是 [3,1,2] 。
+ * 而 arr = [3,2,1] 的下一个排列是 [1,2,3] ，因为 [3,2,1] 不存在一个字典序更大的排列。
+ * <p>
+ * 给你一个整数数组 nums ，找出 nums 的下一个排列。
+ * 必须 原地 修改，只允许使用额外常数空间。
+ * <p>
+ * 示例 1：
+ * 输入：nums = [1,2,3]
+ * 输出：[1,3,2]
+ * <p>
+ * 示例 2：
+ * 输入：nums = [3,2,1]
+ * 输出：[1,2,3]
+ * <p>
+ * 示例 3：
+ * 输入：nums = [1,1,5]
+ * 输出：[1,5,1]
+ * <p>
+ * 提示：
+ * 1 <= nums.length <= 100
+ * 0 <= nums[i] <= 100
  */
-public class A0031NextPermutation{
+public class A0031NextPermutation {
+
     /**
-     *
+     * 官方写法
      * @param nums
      */
-    public void nextPermutation(int[] nums) {
-        int length = nums.length;
-        if (length <= 1) {
-            return;
+    public void nextPermutation2(int[] nums) {
+        int i = nums.length - 2;
+        // 寻找第一个非升序的index
+        while (i >= 0 && nums[i] >= nums[i + 1]) {
+            i--;
         }
-        int little = -1;
-        int bigger = 0;
-
-        for (int i = length-1; i >= 1; i--) {
-            if(nums[i-1] < nums[i]){
-                little = i-1;
-                break;
+        // 从后往前找到第一个比 nums[i]大的数，交换
+        // 又因为 知道 从i + 1 到 nums.lenth 是升序的，所以反转后就是最小的数
+        if (i >= 0) {
+            int j = nums.length - 1;
+            while (j >= 0 && nums[i] >= nums[j]) {
+                j--;
             }
+            swap(nums, i, j);
         }
-        if(little != -1){
-            for(int i = length-1; i >= little; i --){
-                if(nums[i] > nums[little]){
-                    bigger = i;
-                    break;
-                }
-            }
-
-            swap(nums,bigger,little);
-        }
-        //双指针重新排列后续数据，使得数字尽量的小
-        reverse(nums,little+1,length-1);
+        reverse(nums, i + 1);
     }
-    private static void swap(int[] nums,int index1, int index2){
-        int temp  = nums[index1];
+
+    public void reverse(int[] nums, int start) {
+        int left = start, right = nums.length - 1;
+        while (left < right) {
+            swap(nums, left, right);
+            left++;
+            right--;
+        }
+    }
+
+
+    public static void reverse(int[] array) {
+        int left = 0;
+        int right = array.length - 1;
+
+        while (left < right) {
+            // 交换左右元素
+            int temp = array[left];
+            array[left] = array[right];
+            array[right] = temp;
+
+            // 移动指针
+            left++;
+            right--;
+        }
+    }
+
+
+    private void swap(int[] nums, int index1, int index2){
+        int temp = nums[index1];
         nums[index1] = nums[index2];
         nums[index2] = temp;
-    }
-
-    private  static void reverse(int[] nums,int start, int end){
-        while(start < end){
-            swap(nums,start,end);
-            start++;
-            end--;
-        }
     }
 }

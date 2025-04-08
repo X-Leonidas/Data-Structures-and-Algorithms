@@ -26,15 +26,15 @@ public class A00279PerfectSquares {
     }
 
     public static int numSquares(int n) {
-        // dp 数组
+        // dp[i] 代表 和为i的完全平方数的最少数量
         int[] f = new int[n + 1];
         // 穷举 当前数的排列集合， 使用了 dp 来加速
         for (int i = 1; i <= n; i++) {
-            int minn = Integer.MAX_VALUE;
+            int min = Integer.MAX_VALUE;
             for (int j = 1; j * j <= i; j++) {
-                minn = Math.min(minn, f[i - j * j]);
+                min = Math.min(min, f[i - j * j]);
             }
-            f[i] = minn + 1;
+            f[i] = min + 1;
         }
         return f[n];
     }
@@ -61,17 +61,5 @@ public class A00279PerfectSquares {
         }
         dp[n] = ans;
         return ans;
-    }
-
-    public int numSquares3(int n) {
-        int[] f = new int[n + 1];
-        for (int i = 1; i <= n; i++) {
-            int minn = Integer.MAX_VALUE;
-            for (int j = 1; j * j <= i; j++) {
-                minn = Math.min(minn, f[i - j * j]);
-            }
-            f[i] = minn + 1;
-        }
-        return f[n];
     }
 }
