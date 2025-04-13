@@ -15,30 +15,39 @@ import java.util.List;
  * 示例 2：
  * 输入：nums = [0,1]
  * 输出：[[0,1],[1,0]]
- * 示例 3：
  * <p>
+ * 示例 3：
  * 输入：nums = [1]
  * 输出：[[1]]
  * <p>
- * <p>
  * 提示：
- * <p>
  * 1 <= nums.length <= 6
  * -10 <= nums[i] <= 10
  * nums 中的所有整数 互不相同
  */
 public class A0046Permutations {
+    public static void main(String[] args) {
+        int[] nums = {1, 2, 3};
+        A0046Permutations a0046Permutations = new A0046Permutations();
+        System.out.println(a0046Permutations.permute2(nums));
+    }
+
     private final List<List<Integer>> result = new ArrayList<>();
     private int bitSum = 0;
 
-
+    /**
+     * 第一种方案， 使用bitNum 来确认数组中那些被使用了
+     *
+     * @param nums
+     * @return
+     */
     public List<List<Integer>> permute(int[] nums) {
         if (nums == null || nums.length == 0) {
             return result;
         }
 
         int length = nums.length;
-        //长度最多为6，没有溢出的风险
+        //生成结束标识 1111， 长度最多为6，没有溢出的风险
         bitSum = (int) (Math.pow(2, length) - 1);
         process(nums, 0, new ArrayList<>());
         return result;
@@ -83,12 +92,13 @@ public class A0046Permutations {
         return (num & (1 << i)) != 0;
     }
 
-    public static void main(String[] args) {
-        int[] nums = {1,2,3};
-        A0046Permutations a0046Permutations = new A0046Permutations();
-        System.out.println(a0046Permutations.permute2(nums));
-    }
 
+    /**
+     * 第二种方案， 交换
+     *
+     * @param nums
+     * @return
+     */
     public List<List<Integer>> permute2(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
 
@@ -115,6 +125,12 @@ public class A0046Permutations {
 
     List<List<Integer>> result3;
 
+
+    /**
+     * 和方案2 类似
+     * @param nums
+     * @return
+     */
     public List<List<Integer>> permute3(int[] nums) {
         result3 = new ArrayList<>();
         dfs(nums, 0);
