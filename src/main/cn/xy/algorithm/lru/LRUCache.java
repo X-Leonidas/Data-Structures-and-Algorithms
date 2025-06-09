@@ -1,13 +1,9 @@
-package cn.xy.algorithm.LRU;
+package cn.xy.algorithm.lru;
 
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author XiangYu
- * @create2021-05-03-12:03
- */
-public class LRUCache2 {
+public class LRUCache {
     class DLinkedNode {
         int key;
         int value;
@@ -17,18 +13,25 @@ public class LRUCache2 {
         public DLinkedNode() {
         }
 
-        public DLinkedNode(int _key, int _value) {
-            key = _key;
-            value = _value;
+        public DLinkedNode(int key, int value) {
+            this.key = key;
+            this.value = value;
         }
     }
 
-    private Map<Integer, DLinkedNode> cache = new HashMap<Integer, DLinkedNode>();
+    private Map<Integer, DLinkedNode> cache = new HashMap<>();
+    /**
+     * 当前大小
+     */
     private int size;
+
+    /**
+     * 容量
+     */
     private int capacity;
     private DLinkedNode head, tail;
 
-    public LRUCache2(int capacity) {
+    public LRUCache(int capacity) {
         this.size = 0;
         this.capacity = capacity;
         // 使用伪头部和伪尾部节点
@@ -94,5 +97,4 @@ public class LRUCache2 {
         removeNode(res);
         return res;
     }
-
 }

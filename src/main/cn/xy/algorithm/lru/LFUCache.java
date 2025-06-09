@@ -1,4 +1,4 @@
-package cn.xy.algorithm.LRU;
+package cn.xy.algorithm.lru;
 
 import java.util.HashMap;
 
