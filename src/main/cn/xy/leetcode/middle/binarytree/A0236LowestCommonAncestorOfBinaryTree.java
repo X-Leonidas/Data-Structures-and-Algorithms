@@ -2,9 +2,7 @@ package cn.xy.leetcode.middle.binarytree;
 
 import cn.xy.utils.TreeNode;
 
-import java.util.ArrayDeque;
 import java.util.LinkedList;
-import java.util.Queue;
 
 /**
  * @author xiangyu
@@ -50,6 +48,13 @@ public class A0236LowestCommonAncestorOfBinaryTree {
 
     private TreeNode ans = null;
 
+    /**
+     *
+     * @param root
+     * @param p
+     * @param q
+     * @return p 或者 q 是否存在跟节点中root 中
+     */
     private boolean dfs(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) {
             return false;
@@ -62,6 +67,8 @@ public class A0236LowestCommonAncestorOfBinaryTree {
         if ((lson && rson) || ((root.val == p.val || root.val == q.val) && (lson || rson))) {
             ans = root;
         }
+
+        // (root.val == p.val || root.val == q.val) 代表自身是公共祖先
         return lson || rson || (root.val == p.val || root.val == q.val);
     }
 

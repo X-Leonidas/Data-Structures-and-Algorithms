@@ -36,6 +36,7 @@ public class A0035SearchInsertPosition {
                 mid = start + (end - start) / 2;
             } else if (nums[mid] < target) {
                 start = mid + 1;
+                // 保证 mid 都处于 较小的位置
                 mid = start + (end - start) / 2;
             } else {
                 return mid;

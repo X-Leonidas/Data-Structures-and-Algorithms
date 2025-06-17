@@ -22,4 +22,20 @@ public class A0206ReverseLinkedList {
     }
 
 
+    public ListNode reverseList2(ListNode head) {
+        return reverse(null, head);
+    }
+
+    private ListNode reverse(ListNode prev, ListNode cur) {
+        if (cur == null) {
+            return prev;
+        }
+        ListNode temp;
+        // 先保存下一个节点
+        temp = cur.next;
+        // 反转
+        cur.next = prev;
+        return reverse(cur, temp);
+    }
+
 }
